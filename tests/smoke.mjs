@@ -71,6 +71,14 @@ try {
   const answer = await page.evaluate(() => document.querySelector('#bubble-text').textContent);
   check(/bug/i.test(answer), 'the question box answers in character', answer);
 
+  // recorded voice
+  const rec = await page.evaluate(() => ({ count: window.__riz.recorded.count, greeting: window.__riz.recorded.has('Oh. Visitors. Touch anything and I will comment. Drag me and I will complain. Ask me and, against my better judgement, I will help.') }));
+  check(rec.count >= 110 && rec.greeting, 'his recorded ElevenLabs lines are mapped to the script', JSON.stringify(rec));
+  await page.click('#b-voice');
+  await wait(400);
+  check(await page.evaluate(() => window.__riz.voice.on && !!document.querySelector('#b-talk')), 'voice toggles on and the live agent button is present');
+  await page.click('#b-voice');
+
   // mesh mode
   await page.click('#b-mesh');
   await wait(300);

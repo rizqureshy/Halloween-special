@@ -86,3 +86,6 @@ button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) {
   .bubble { transition: none; }
 }
+
+.talk-host { position: fixed; right: 20px; bottom: 90px; z-index: 6; }
+@media (max-width: 720px) { .talk-host { right: 10px; bottom: 70px; } }

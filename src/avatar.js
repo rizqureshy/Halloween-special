@@ -23,8 +23,8 @@ export function createAvatar() {
   const cloth = new THREE.MeshStandardMaterial({ color: 0x0f1014, roughness: 0.85 });
   const metal = new THREE.MeshStandardMaterial({ color: 0x8d939c, metalness: 0.9, roughness: 0.3 });
   const glow = (color, intensity = 2) => new THREE.MeshStandardMaterial({ color, emissive: new THREE.Color(color), emissiveIntensity: intensity, roughness: 0.4 });
-  const blueGlow = glow(BLUE, 2.2);
-  const orangeGlow = glow(ORANGE, 2.4);
+  const blueGlow = glow(BLUE, 1.2);
+  const orangeGlow = glow(ORANGE, 1.3);
   const frames = new THREE.MeshStandardMaterial({ color: 0x0a0a0c, metalness: 0.6, roughness: 0.35 });
   const throneMat = new THREE.MeshStandardMaterial({ color: 0x0c0d12, roughness: 0.5, metalness: 0.5 });
   const holo = new THREE.MeshBasicMaterial({ color: BLUE, transparent: true, opacity: 0.18, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide });
@@ -256,11 +256,11 @@ export function createAvatar() {
     group.rotation.x = state.dragging ? lerp(group.rotation.x, -0.15, 0.1) : lerp(group.rotation.x, 0, 0.05);
     parts.ring.scale.setScalar(1 + Math.sin(now * 3) * 0.04);
     parts.ring2.rotation.z = now * 0.4;
-    parts.ring.material.emissiveIntensity = 2.2 + Math.sin(now * 3) * 0.6;
+    parts.ring.material.emissiveIntensity = 1.3 + Math.sin(now * 3) * 0.35;
     // breathing
     torso.scale.y = 1 + Math.sin(now * 1.4) * 0.012;
     parts.emblem.material.opacity = 0.75 + Math.sin(now * 2.2) * 0.25;
-    parts.port.material.emissiveIntensity = 2 + Math.sin(now * 5) * 1;
+    parts.port.material.emissiveIntensity = 1.2 + Math.sin(now * 5) * 0.5;
 
     // head aim: a target, else the pointer, else forward with a slow look-around
     let target = null;

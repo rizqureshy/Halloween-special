@@ -7,6 +7,11 @@ import { createAvatar } from './avatar.js';
 import { createWorld } from './world.js';
 import { say, SIGHS, TOUCH, HELP, DRAG, RETURN, IDLE, GREETING, ASK, ASK_DEFAULT } from './quips.js';
 import { voice, ambience } from './voice.js';
+import { recorded } from './lines-audio.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 const $ = (id) => document.getElementById(id);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -34,6 +39,12 @@ controls.minAzimuthAngle = -1.1;
 controls.maxAzimuthAngle = 1.1;
 controls.autoRotate = !reduced;
 controls.autoRotateSpeed = 0.25;
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.28, 0.5, 0.92);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
 
 const world = createWorld(scene);
 const avatar = createAvatar();
@@ -63,6 +74,7 @@ const interactive = [...world.interactive, ...avatar.interactive];
 const resize = () => {
   const w = canvas.clientWidth, h = canvas.clientHeight;
   renderer.setSize(w, h, false);
+  composer.setSize(w, h);
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
 };
@@ -82,7 +94,7 @@ const speak = (text, { hold = 5200, tone = 'snob' } = {}) => {
   bubble.classList.add('show');
   clearTimeout(bubbleTimer);
   bubbleTimer = setTimeout(() => bubble.classList.remove('show'), hold);
-  voice.say(text);
+  if (voice.on) { if (!recorded.play(text)) voice.say(text); }
   log(text, tone);
 };
 const logEl = $('log');
@@ -230,10 +242,29 @@ const idle = (t) => {
 
 // ---- Controls --------------------------------------------------------------------
 $('b-voice').addEventListener('click', (e) => {
-  if (!voice.ready()) return speak('This browser has no voice. Imagine something dry.', { tone: 'snob' });
+  recorded.unlock();
   voice.on = !voice.on;
   e.currentTarget.setAttribute('aria-pressed', String(voice.on));
-  if (voice.on) speak('Voice on. Do not get used to it.', { tone: 'snob' }); else voice.stop();
+  if (voice.on) speak('Voice on. Do not get used to it.', { tone: 'snob' }); else { recorded.stop(); voice.stop(); }
+});
+// The live him: an ElevenLabs conversational agent, loaded only when asked for.
+const AGENT = 'agent_5201m6eq1ew0erk908bj3v1nyd89';
+$('b-talk').addEventListener('click', (e) => {
+  const host = $('talk-host');
+  if (host.dataset.mounted) { host.hidden = !host.hidden; e.currentTarget.setAttribute('aria-pressed', String(!host.hidden)); return; }
+  host.dataset.mounted = 'true';
+  host.hidden = false;
+  e.currentTarget.setAttribute('aria-pressed', 'true');
+  const widget = document.createElement('elevenlabs-convai');
+  widget.setAttribute('agent-id', AGENT);
+  host.appendChild(widget);
+  const script = document.createElement('script');
+  script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+  script.async = true;
+  script.type = 'text/javascript';
+  document.body.appendChild(script);
+  speak('Oh, you want to talk. Fine. Press the button. I will sigh first.', { tone: 'snob', hold: 5000 });
+  avatar.setMood('helping', 5);
 });
 $('b-sound').addEventListener('click', (e) => {
   if (ambience.on) ambience.stop(); else ambience.start();
@@ -291,7 +322,7 @@ const tick = () => {
   bubble.style.left = `${r.left + ((headScreen.x + 1) / 2) * r.width}px`;
   bubble.style.top = `${r.top + ((1 - headScreen.y) / 2) * r.height}px`;
   idle(t);
-  renderer.render(scene, camera);
+  composer.render();
   requestAnimationFrame(tick);
 };
 tick();
@@ -299,4 +330,4 @@ setTimeout(() => speak(GREETING, { tone: 'help', hold: 9000 }), 1200);
 paintCounters();
 $('stage').dataset.ready = 'true';
 
-window.__riz = { avatar, world, scene, camera, counters, react, speak, THREE };
+window.__riz = { avatar, world, scene, camera, counters, react, speak, THREE, recorded, voice };

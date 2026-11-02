@@ -26,6 +26,7 @@
       </div>
       <div class="controls">
         <button type="button" id="b-voice" aria-pressed="false">Voice</button>
+        <button type="button" id="b-talk" aria-pressed="false">Talk to him</button>
         <button type="button" id="b-sound" aria-pressed="false">Sound</button>
         <button type="button" id="b-mesh" aria-pressed="false">Mesh</button>
         <button type="button" id="b-reset">Reset view</button>
@@ -45,7 +46,8 @@
       <button type="submit">Ask</button>
     </form>
 
-    <footer class="bottom"><p>A Halloween toy for the team. Everything here is generated in the browser; nothing is sent anywhere. He is a hologram and he knows it.</p></footer>
+    <div class="talk-host" id="talk-host" hidden></div>
+    <footer class="bottom"><p>A Halloween toy for the team. His voice is ElevenLabs; "Talk to him" opens a live ElevenLabs conversation (recorded for review). Nothing else leaves the page. He is a hologram and he knows it.</p></footer>
 
     <script type="module" src="./src/main.js"></script>
   </body>

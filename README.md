@@ -2,7 +2,7 @@
 
 A Halloween toy for the team: a holographic 3D version of Riz, wired into his digital command centre and floating at work. Click any screen, agent node, the brain, a pumpkin or a candle and he comments, snobbily, then sighs and actually helps. Drag him away from his desk and he complains all the way, then floats back. Ask him anything in the box and, after a sigh, he answers in character.
 
-Everything is built in the browser with Three.js: the figure, the throne, the screens, the agent nodes on their neural threads, the pumpkins, the fog and the sound. No images, no models, no requests leave the page.
+The scene is built in the browser with Three.js: the figure, the throne, the screens, the agent nodes on their neural threads, the pumpkins, the fog, the bloom and the ambience. His voice is ElevenLabs: 116 recorded lines (voice "Timothy Pemberton Smythe", model eleven_v4) ship with the site, and "Talk to him" opens a live ElevenLabs conversational agent with the same voice and persona. Nothing else leaves the page.
 
 ## Run
 
@@ -25,8 +25,14 @@ A ready-built copy lives in `docs/`. In the repository settings, open Pages, cho
 - **Click** a screen, an agent, the brain, a pumpkin, a candle, the throne or him.
 - **Drag him** (press on him and move) to carry him away from his work. Release to let him float back.
 - **Orbit** by dragging empty space; scroll to zoom. **Reset view** puts the camera back.
-- **Voice** reads his lines with the browser's own voice (dry, British where available). **Sound** adds wind and a low drone from WebAudio. **Mesh** shows him as wireframe. All three start only from a click.
+- **Voice** plays his recorded ElevenLabs lines (the browser's own voice fills in for any line without a recording). **Talk to him** loads the live ElevenLabs agent widget so he can answer in his own voice; that is the one thing that reaches outside the page, and only on that click. **Sound** adds wind and a low drone from WebAudio. **Mesh** shows him as wireframe. All of them start only from a click.
 - **Ask him something** in the box at the bottom.
+
+## His voice
+
+- Lines live in `src/quips.js`. Recordings live in `public/voice/<id>.mp3`, mapped by text in `src/voice-manifest.json`. A line whose text changes loses its recording until it is regenerated.
+- They were generated in thirteen batches on an ElevenLabs flow ("Riz Halloween edition: voice lines"), transcribed with Scribe for word timestamps, and cut per line with ffmpeg. About 9,100 credits for speech and 5,600 for the transcripts.
+- The live agent is "Riz, Halloween edition" (`agent_5201m6eq1ew0erk908bj3v1nyd89`): Claude Sonnet 5.5 at temperature 0.6, the same voice, a daily cap of 60 conversations and 4 at once, allowed from rizqureshy.github.io and localhost, low trust context. Conversations are recorded in the ElevenLabs workspace. Edit the persona in the ElevenLabs agent prompt; the page only carries the id.
 
 ## Making him more like the real one
 

@@ -104,16 +104,16 @@ export function createWorld(scene) {
   const nodes = NODES.map((n) => {
     const g = new THREE.Group();
     g.position.set(...n.pos);
-    const disc = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.04, 32), glow(BLUE, 1.2));
+    const disc = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.04, 32), glow(BLUE, 0.6));
     disc.material.transparent = true; disc.material.opacity = 0.75;
-    const discRing = new THREE.Mesh(new THREE.TorusGeometry(0.46, 0.02, 8, 40), glow(BLUE, 2.5));
+    const discRing = new THREE.Mesh(new THREE.TorusGeometry(0.46, 0.02, 8, 40), glow(BLUE, 1.4));
     discRing.rotation.x = Math.PI / 2;
     const bodyMat = new THREE.MeshStandardMaterial({ color: 0x1b2a4a, emissive: new THREE.Color(BLUE), emissiveIntensity: 0.35, roughness: 0.4, transparent: true, opacity: 0.9 });
     const bot = new THREE.Mesh(new THREE.CapsuleGeometry(0.16, 0.22, 4, 12), bodyMat);
     bot.position.y = 0.32;
     const botHead = new THREE.Mesh(new THREE.SphereGeometry(0.15, 16, 12), bodyMat);
     botHead.position.y = 0.66;
-    const visor = new THREE.Mesh(new THREE.SphereGeometry(0.06, 10, 8), glow(VIOLET, 3));
+    const visor = new THREE.Mesh(new THREE.SphereGeometry(0.06, 10, 8), glow(VIOLET, 1.8));
     visor.position.set(0, 0.68, 0.11);
     const icon = new THREE.Sprite(new THREE.SpriteMaterial({ map: iconTexture(n.id), transparent: true, depthWrite: false }));
     icon.scale.set(0.5, 0.5, 1);
@@ -127,7 +127,7 @@ export function createWorld(scene) {
   });
 
   // ---- Neural threads ------------------------------------------------------------
-  const threadMat = new THREE.MeshBasicMaterial({ color: BLUE, transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false });
+  const threadMat = new THREE.MeshBasicMaterial({ color: BLUE, transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false });
   const beadMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
   const from = new V();
   const threads = nodes.map((n, i) => {
@@ -154,7 +154,7 @@ export function createWorld(scene) {
   const updateThreads = (t, portPos) => {
     if (!threads[0].curve || portPos.distanceToSquared(from) > 1e-6) { rebuild(portPos); from.copy(portPos); }
     for (const th of threads) { const k = (t * 0.25 + th.offset) % 1; th.curve.getPointAt(k, th.bead.position); }
-    threadMat.opacity = 0.45 + Math.sin(t * 2) * 0.12;
+    threadMat.opacity = 0.28 + Math.sin(t * 2) * 0.08;
   };
 
   // ---- Pumpkins and candles ----------------------------------------------------------

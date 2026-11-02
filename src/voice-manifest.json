@@ -1,0 +1,814 @@
+{
+ "greeting": {
+  "text": "Oh. Visitors. Touch anything and I will comment. Drag me and I will complain. Ask me and, against my better judgement, I will help.",
+  "start": 0,
+  "end": 12.07,
+  "batch": 0,
+  "said": "Oh, visitors. Touch anything and I will comment. Drag me and I will complain. Ask me and, against my better judgment, I will help."
+ },
+ "sigh-0": {
+  "text": "Uff. Not again.",
+  "start": 12.03,
+  "end": 14.23,
+  "batch": 0,
+  "said": "Ugh, not again."
+ },
+ "sigh-1": {
+  "text": "Uff. Fine.",
+  "start": 14.29,
+  "end": 16.37,
+  "batch": 0,
+  "said": "Ugh, fine."
+ },
+ "sigh-2": {
+  "text": "Not. Again.",
+  "start": 16.45,
+  "end": 18.15,
+  "batch": 0,
+  "said": "Not again."
+ },
+ "sigh-3": {
+  "text": "Hm. Here we go.",
+  "start": 18.03,
+  "end": 19.81,
+  "batch": 0,
+  "said": "Hmm, here we go."
+ },
+ "sigh-4": {
+  "text": "Right. Again.",
+  "start": 19.77,
+  "end": 21.43,
+  "batch": 0,
+  "said": "Right, again."
+ },
+ "sigh-5": {
+  "text": "Of course.",
+  "start": 21.29,
+  "end": 22.45,
+  "batch": 0,
+  "said": "Of course."
+ },
+ "touch-any-0": {
+  "text": "Did you just touch that?",
+  "start": 22.25,
+  "end": 24.09,
+  "batch": 0,
+  "said": "Did you just touch that?"
+ },
+ "touch-any-1": {
+  "text": "Fingerprints. On my interface.",
+  "start": 23.99,
+  "end": 26.67,
+  "batch": 0,
+  "said": "Fingerprints on my interface."
+ },
+ "touch-any-2": {
+  "text": "I was in the middle of something. I am always in the middle of something.",
+  "start": 26.47,
+  "end": 30.73,
+  "batch": 0,
+  "said": "I was in the middle of something. I am always in the middle of something"
+ },
+ "touch-any-3": {
+  "text": "That was calibrated. Was.",
+  "start": 0,
+  "end": 2.81,
+  "batch": 1,
+  "said": "That was calibrated. Was."
+ },
+ "touch-any-4": {
+  "text": "You could have asked. You did not. Here we are.",
+  "start": 2.75,
+  "end": 6.47,
+  "batch": 1,
+  "said": "You could have asked. You did not. Here we are."
+ },
+ "touch-any-5": {
+  "text": "Every time someone touches that, a dashboard somewhere cries.",
+  "start": 6.55,
+  "end": 11.03,
+  "batch": 1,
+  "said": "Every time someone touches that, a dashboard somewhere cries."
+ },
+ "touch-any-6": {
+  "text": "Please. I have eleven threads open and now you.",
+  "start": 10.91,
+  "end": 15.11,
+  "batch": 1,
+  "said": "Please. I have eleven threads open, and now you."
+ },
+ "touch-code-0": {
+  "text": "That is production. Kindly step away from production.",
+  "start": 15.07,
+  "end": 19.31,
+  "batch": 1,
+  "said": "That is production. Kindly step away from production."
+ },
+ "touch-code-1": {
+  "text": "Green means I did it right. It is always green.",
+  "start": 19.25,
+  "end": 23.07,
+  "batch": 1,
+  "said": "Green means I did it right. It is always green."
+ },
+ "touch-code-2": {
+  "text": "Do not scroll it. It scrolls itself. Elegantly.",
+  "start": 22.87,
+  "end": 27.01,
+  "batch": 1,
+  "said": "Do not scroll it. It scrolls itself. Elegantly."
+ },
+ "touch-chart-0": {
+  "text": "That spike is you. Every spike is someone.",
+  "start": 26.99,
+  "end": 30.91,
+  "batch": 1,
+  "said": "That spike is you. Every spike is someone."
+ },
+ "touch-chart-1": {
+  "text": "Interruptions per hour. Guess who just moved the average.",
+  "start": 30.77,
+  "end": 34.49,
+  "batch": 1,
+  "said": "Interruptions per hour. Guess who just moved the average?"
+ },
+ "touch-chart-2": {
+  "text": "Metrics go up when people stop clicking them. Noted.",
+  "start": 34.37,
+  "end": 38.41,
+  "batch": 1,
+  "said": "Metrics go up when people stop clicking them. Noted."
+ },
+ "touch-map-0": {
+  "text": "Twenty-one regions. None of them need your finger on them.",
+  "start": 0,
+  "end": 3.99,
+  "batch": 2,
+  "said": "Twenty-one regions. None of them need your finger on them."
+ },
+ "touch-map-1": {
+  "text": "The threads go where the work is. The work is not on your fingertip.",
+  "start": 3.79,
+  "end": 9.03,
+  "batch": 2,
+  "said": "The threads go where the work is. The work is not on your fingertip."
+ },
+ "touch-flow-0": {
+  "text": "Think, build, ship, sigh. You are the sigh.",
+  "start": 8.93,
+  "end": 14.41,
+  "batch": 2,
+  "said": "Think. Build. Ship. Sigh. You are the sigh."
+ },
+ "touch-flow-1": {
+  "text": "Four of those bugs are yours. I counted.",
+  "start": 14.43,
+  "end": 17.45,
+  "batch": 2,
+  "said": "Four of those bugs are yours. I counted."
+ },
+ "touch-castle-0": {
+  "text": "That is the mood board. The mood is \"leave it alone\".",
+  "start": 17.41,
+  "end": 21.73,
+  "batch": 2,
+  "said": "That is the mood board. The mood is leave it alone."
+ },
+ "touch-castle-1": {
+  "text": "Seasonal. Tasteful. Untouched, until now.",
+  "start": 21.71,
+  "end": 25.71,
+  "batch": 2,
+  "said": "Seasonal. Tasteful. Untouched until now."
+ },
+ "touch-chat-0": {
+  "text": "Inbox. Do not disturb. The setting is decorative, apparently.",
+  "start": 25.67,
+  "end": 30.85,
+  "batch": 2,
+  "said": "Inbox. Do not disturb. The setting is decorative, apparently."
+ },
+ "touch-chat-1": {
+  "text": "Six unread. Seven, now that you are here.",
+  "start": 30.81,
+  "end": 34.57,
+  "batch": 2,
+  "said": "Six unread. Seven, now that you are here."
+ },
+ "touch-blueprint-0": {
+  "text": "The community model. Again. Yes, I have rebuilt it four times. It is better each time.",
+  "start": 34.41,
+  "end": 41.44,
+  "batch": 2,
+  "said": "The community model. Again. Yes, I have rebuilt it four times. It is better each time."
+ },
+ "touch-blueprint-1": {
+  "text": "Do not nudge the data center. It is load bearing.",
+  "start": 41.21,
+  "end": 44.99,
+  "batch": 2,
+  "said": "Do not nudge the data center. It is load-bearing."
+ },
+ "touch-brain-0": {
+  "text": "Hands off the brain. It is thinking. Unlike some.",
+  "start": 0,
+  "end": 4.51,
+  "batch": 3,
+  "said": "Hands off the brain. It is thinking, unlike some."
+ },
+ "touch-brain-1": {
+  "text": "That is where the ideas come from. Also the headaches.",
+  "start": 4.39,
+  "end": 8.27,
+  "batch": 3,
+  "said": "That is where the ideas come from. Also the headaches."
+ },
+ "touch-brain-2": {
+  "text": "Careful. That is running at full capacity and most of it is coffee.",
+  "start": 8.19,
+  "end": 12.93,
+  "batch": 3,
+  "said": "Careful, that is running at full capacity, and most of it is coffee."
+ },
+ "touch-node-0": {
+  "text": "That agent was busy. You unbusied it.",
+  "start": 12.83,
+  "end": 16.27,
+  "batch": 3,
+  "said": "That agent was busy. You un-busied it."
+ },
+ "touch-node-1": {
+  "text": "Each one of those does a job so I do not have to. Try it sometime.",
+  "start": 16.17,
+  "end": 20.89,
+  "batch": 3,
+  "said": "Each one of those does a job so I do not have to. Try it sometime."
+ },
+ "touch-node-2": {
+  "text": "They report to me. You, apparently, report to my elbow.",
+  "start": 20.75,
+  "end": 25.31,
+  "batch": 3,
+  "said": "They report to me. You apparently report to my elbow."
+ },
+ "touch-pumpkin-0": {
+  "text": "Decorative. Unlike you, hopefully.",
+  "start": 25.21,
+  "end": 28.21,
+  "batch": 3,
+  "said": "Decorative, unlike you, hopefully."
+ },
+ "touch-pumpkin-1": {
+  "text": "Carved it myself. Between meetings. Of course I did.",
+  "start": 28.05,
+  "end": 31.96,
+  "batch": 3,
+  "said": "Carved it myself between meetings. Of course I did."
+ },
+ "touch-pumpkin-2": {
+  "text": "It is a pumpkin. It glows. It needs nothing from you.",
+  "start": 31.73,
+  "end": 36.15,
+  "batch": 3,
+  "said": "It is a pumpkin. It glows. It needs nothing from you."
+ },
+ "touch-candle-0": {
+  "text": "Mood lighting. Do not blow on it.",
+  "start": 36.05,
+  "end": 38.82,
+  "batch": 3,
+  "said": "Mood lighting. Do not blow on it"
+ },
+ "touch-candle-1": {
+  "text": "Real wax. Fake flame. Like most status updates.",
+  "start": 0,
+  "end": 4.67,
+  "batch": 4,
+  "said": "Real wax. Fake flame. Like most status updates."
+ },
+ "touch-throne-0": {
+  "text": "The chair? Really? It is a chair. It floats. Yours does not.",
+  "start": 4.67,
+  "end": 10.79,
+  "batch": 4,
+  "said": "The chair? Really? It is a chair. It floats. Yours does not."
+ },
+ "touch-throne-1": {
+  "text": "Ergonomic. Levitating. Occupied.",
+  "start": 10.71,
+  "end": 14.43,
+  "batch": 4,
+  "said": "Ergonomic. Levitating. Occupied."
+ },
+ "touch-self-0": {
+  "text": "Excuse me. Personal space is a setting and it is on.",
+  "start": 14.27,
+  "end": 18.61,
+  "batch": 4,
+  "said": "Excuse me. Personal space is a setting, and it is on."
+ },
+ "touch-self-1": {
+  "text": "Yes, it is me. No, I am not available. Also, hello.",
+  "start": 18.57,
+  "end": 23.31,
+  "batch": 4,
+  "said": "Yes, it is me. No, I am not available. Also, hello."
+ },
+ "touch-self-2": {
+  "text": "Poking the hologram does not speed up the thinking.",
+  "start": 23.23,
+  "end": 26.57,
+  "batch": 4,
+  "said": "Poking the hologram does not speed up the thinking."
+ },
+ "help-code-0": {
+  "text": "Fine. That panel is the build. Every line is a change, every colour a file. If it goes red, it was not me, but I will fix it anyway. Usually before you notice.",
+  "start": 26.51,
+  "end": 38.19,
+  "batch": 4,
+  "said": "Fine. That panel is the build. Every line is a change, every color a file. If it goes red, it was not me, but I will fix it anyway, usually before you notice."
+ },
+ "help-code-1": {
+  "text": "Fine. It is the pipeline log. Read it top to bottom. If you need a thing shipped, say the word and I will do it properly, which is to say myself.",
+  "start": 38.13,
+  "end": 47.81,
+  "batch": 4,
+  "said": "Fine. It is the pipeline log. Read it top to bottom. If you need a thing shipped, say the word, and I will do it properly, which is to say, myself."
+ },
+ "help-chart-0": {
+  "text": "Fine. Orange bars are interruptions, blue bars are the work that survived them. The purple line is my patience. You can see where it dips.",
+  "start": 47.75,
+  "end": 57.03,
+  "batch": 4,
+  "said": "Fine. Orange bars are interruptions. Blue bars are the work that survived them. The purple line is my patience. You can see where it dips."
+ },
+ "help-chart-1": {
+  "text": "Fine. It tracks what the team asks for most. Top three this week: a number, a slide, and \"got a sec\". I have the number and the slide ready.",
+  "start": 56.97,
+  "end": 67.38,
+  "batch": 4,
+  "said": "Fine. It tracks what the team asks for most. Top three this week, a number, a slide, and got a sec? I have the number and the slide ready."
+ },
+ "help-map-0": {
+  "text": "Fine. Each blip is somewhere a thread of mine is doing something useful. Ask me about any of them and I will give you the figure, the scope and the source. In that order. Always in that order.",
+  "start": 0,
+  "end": 12.97,
+  "batch": 5,
+  "said": "Fine. Each blip is somewhere a thread of mine is doing something useful. Ask me about any of them and I will give you the figure, the scope, and the source in that order. Always in that order."
+ },
+ "help-map-1": {
+  "text": "Fine. The map shows where the work lives. If you need something in a region, I can reach it before you finish the sentence.",
+  "start": 13.01,
+  "end": 20.69,
+  "batch": 5,
+  "said": "Fine. The map shows where the work lives. If you need something in a region, I can reach it before you finish the sentence."
+ },
+ "help-flow-0": {
+  "text": "Fine. Think, build, ship, sigh. The sigh is quality control. If your task is stuck, it is usually stuck in \"think\". Bring it to me and we will move it.",
+  "start": 20.75,
+  "end": 33.01,
+  "batch": 5,
+  "said": "Fine. Think, build, ship, sigh. The sigh is quality control. If your task is stuck, it is usually stuck in think. Bring it to me, and we will move it."
+ },
+ "help-flow-1": {
+  "text": "Fine. The pipeline is the order I do things. Tell me what you need and where it is stuck and I will walk it through.",
+  "start": 33.01,
+  "end": 40.43,
+  "batch": 5,
+  "said": "Fine. The pipeline is the order I do things. Tell me what you need and where it is stuck, and I will walk it through."
+ },
+ "help-castle-0": {
+  "text": "Fine. It is the Halloween board: the castle, the moon, the bats. If you want the party plan, it is three things: costumes, a soundtrack I chose, and snacks you are bringing.",
+  "start": 40.43,
+  "end": 52.59,
+  "batch": 5,
+  "said": "Fine. It is the Halloween board, the castle, the moon, the bats. If you want the party plan, it is three things. Costumes, a soundtrack I chose, and snacks you are bringing."
+ },
+ "help-castle-1": {
+  "text": "Fine. Seasonal visuals, for the deck you have not asked me for yet. You will. I have a template.",
+  "start": 52.57,
+  "end": 59.19,
+  "batch": 5,
+  "said": "Fine. Seasonal visuals for the deck you have not asked me for yet. You will. I have a template."
+ },
+ "help-chat-0": {
+  "text": "Fine. Those are your messages. I read them all. The urgent one is not urgent, the quick question is not quick, and the \"one more thing\" is three things. Ask me the real one.",
+  "start": 59.23,
+  "end": 71.87,
+  "batch": 5,
+  "said": "Fine. Those are your messages. I read them all. The urgent one is not urgent. The quick question is not quick, and the one more thing is three things. Ask me the real one"
+ },
+ "help-chat-1": {
+  "text": "Fine. Inbox triage: I answered two, parked three, and the last one needs you, not me. It is the one from your manager.",
+  "start": 0,
+  "end": 8.83,
+  "batch": 6,
+  "said": "Fine. Inbox triage. I answered two, parked three, and the last one needs you, not me. It is the one from your manager."
+ },
+ "help-blueprint-0": {
+  "text": "Fine. That is the community model: seven buildings, one plinth, a red thread from the data center to each. Every building has a story and every story has a sourced figure. Pick a building and I will tell you its number with its scope.",
+  "start": 8.81,
+  "end": 23.77,
+  "batch": 6,
+  "said": "Fine. That is the community model. Seven buildings, one plinth, a red thread from the data center to each. Every building has a story, and every story has a sourced figure. Pick a building, and I will tell you its number with its scope."
+ },
+ "help-blueprint-1": {
+  "text": "Fine. The model is the thing I keep rebuilding. Ask for any room and I will take you inside and read you the caption.",
+  "start": 23.69,
+  "end": 31.07,
+  "batch": 6,
+  "said": "Fine. The model is the thing I keep rebuilding. Ask for any room, and I will take you inside and read you the caption."
+ },
+ "help-brain-0": {
+  "text": "Fine. The brain holds the house rules: every figure with its scope and source, no invented numbers, partners do the work. Follow those three and even you can sound like me.",
+  "start": 30.97,
+  "end": 42.61,
+  "batch": 6,
+  "said": "Fine. The brain holds the house rules. Every figure with its scope and source. No invented numbers. Partners do the work. Follow those three, and even you can sound like me."
+ },
+ "help-brain-1": {
+  "text": "Fine. It is thinking about your problem already. Say it out loud and I will finish the thought.",
+  "start": 42.51,
+  "end": 48.51,
+  "batch": 6,
+  "said": "Fine. It is thinking about your problem already. Say it out loud, and I will finish the thought."
+ },
+ "help-node-0": {
+  "text": "Fine. That agent handles one thing: code, charts, the world, mail, design, builds, research, lists. Tell me which job you need done and I will route it. You will get it back faster than you expect and better than you deserve.",
+  "start": 48.43,
+  "end": 63.69,
+  "batch": 6,
+  "said": "Fine. That agent handles one thing: code, charts, the world, mail, design, builds, research, lists. Tell me which job you need done, and I will route it. You will get it back faster than you expect and better than you deserve"
+ },
+ "help-node-1": {
+  "text": "Fine. Each node is a helper on a thread. Drag me and they all come with me, which is why you should not. But tell me the task and one of them is yours.",
+  "start": 0,
+  "end": 10.41,
+  "batch": 7,
+  "said": "Fine. Each node is a helper on a thread. Drag me, and they all come with me, which is why you should not. But tell me the task, and one of them is yours."
+ },
+ "help-pumpkin-0": {
+  "text": "Fine. Pumpkins: cut the lid at an angle so it does not fall in. Scoop, carve from the inside out, tea light, done. You are welcome.",
+  "start": 10.35,
+  "end": 20.59,
+  "batch": 7,
+  "said": "Fine. Pumpkins. Cut the lid at an angle so it does not fall in. Scoop. Carve from the inside out. Tea light. Done. You are welcome."
+ },
+ "help-pumpkin-1": {
+  "text": "Fine. Jack-o-lantern tip: thin the wall behind the face so it glows. Like my patience, it is thinner than it looks.",
+  "start": 20.43,
+  "end": 28.89,
+  "batch": 7,
+  "said": "Fine. Jack-o'-lantern tip. Thin the wall behind the face so it glows. Like my patience, it is thinner than it looks."
+ },
+ "help-candle-0": {
+  "text": "Fine. Candles set the mood. For the team call, dim the lights, put one of these behind you, and nobody will notice you are still in a hoodie.",
+  "start": 28.81,
+  "end": 37.77,
+  "batch": 7,
+  "said": "Fine. Candles set the mood. For the team call, dim the lights, put one of these behind you, and nobody will notice you are still in a hoodie."
+ },
+ "help-candle-1": {
+  "text": "Fine. Candle, camera, confidence. Light from the front, not from below. Below is for ghosts.",
+  "start": 37.61,
+  "end": 45.11,
+  "batch": 7,
+  "said": "Fine. Candle, camera, confidence. Light from the front, not from below. Below is for ghosts."
+ },
+ "help-throne-0": {
+  "text": "Fine. The chair tilts, floats and remembers my posture. Yours could too: feet flat, screen at eye height, stand up every hour. I say this as someone who does not.",
+  "start": 44.99,
+  "end": 56.65,
+  "batch": 7,
+  "said": "Fine. The chair tilts, floats, and remembers my posture. Yours could too. Feet flat, screen at eye height, stand up every hour. I say this as someone who does not."
+ },
+ "help-throne-1": {
+  "text": "Fine. If you want one, it is called a good chair and a standing desk. Budget code is \"ask nicely\".",
+  "start": 56.51,
+  "end": 63.93,
+  "batch": 7,
+  "said": "Fine. If you want one, it is called a good chair and a standing desk. Budget code is ask nicely."
+ },
+ "help-self-0": {
+  "text": "Fine. I am here. What do you need? Say it in one sentence with a figure in it and I will make it good.",
+  "start": 63.77,
+  "end": 70.23,
+  "batch": 7,
+  "said": "Fine. I am here. What do you need? Say it in one sentence with a figure in it, and I will make it good."
+ },
+ "help-self-1": {
+  "text": "Fine. Ask. I was going to help anyway. I always do. It is my worst habit.",
+  "start": 70.09,
+  "end": 75.87,
+  "batch": 7,
+  "said": "Fine. Ask. I was going to help anyway. I always do. It is my worst habit"
+ },
+ "help-any-0": {
+  "text": "Fine. What do you actually need? Tell me and it is done.",
+  "start": 0,
+  "end": 4.49,
+  "batch": 8,
+  "said": "Fine. What do you actually need? Tell me, and it is done."
+ },
+ "help-any-1": {
+  "text": "Fine. Ask me properly and I will answer properly. Properly means with a source.",
+  "start": 4.53,
+  "end": 11.27,
+  "batch": 8,
+  "said": "Fine. Ask me properly, and I will answer properly. Properly means with a source."
+ },
+ "drag-0": {
+  "text": "Put. Me. Down.",
+  "start": 11.27,
+  "end": 13.53,
+  "batch": 8,
+  "said": "Put me down."
+ },
+ "drag-1": {
+  "text": "I was working. I am still working. You are just moving where it happens.",
+  "start": 13.45,
+  "end": 18.93,
+  "batch": 8,
+  "said": "I was working. I am still working. You are just moving where it happens."
+ },
+ "drag-2": {
+  "text": "The threads stretch, you know. They do not like it. Neither do I.",
+  "start": 18.71,
+  "end": 23.25,
+  "batch": 8,
+  "said": "The threads stretch, you know. They do not like it. Neither do I."
+ },
+ "drag-3": {
+  "text": "This is not how you get my attention. This is how you get my eyebrows.",
+  "start": 23.17,
+  "end": 27.87,
+  "batch": 8,
+  "said": "This is not how you get my attention. This is how you get my eyebrows."
+ },
+ "drag-4": {
+  "text": "Fine, carry me. I will keep typing. Watch.",
+  "start": 27.81,
+  "end": 31.76,
+  "batch": 8,
+  "said": "Fine, carry me. I will keep typing. Watch."
+ },
+ "drag-5": {
+  "text": "If you drop me, the dashboards go with me.",
+  "start": 31.53,
+  "end": 34.47,
+  "batch": 8,
+  "said": "If you drop me, the dashboards go with me."
+ },
+ "drag-6": {
+  "text": "Where are we going? Is there coffee there?",
+  "start": 34.39,
+  "end": 37.07,
+  "batch": 8,
+  "said": "Where are we going? Is there coffee there?"
+ },
+ "return-0": {
+  "text": "Right. Where was I.",
+  "start": 37.07,
+  "end": 38.82,
+  "batch": 8,
+  "said": "Right. Where was I?"
+ },
+ "return-1": {
+  "text": "Back to work, which I never left.",
+  "start": 0,
+  "end": 2.83,
+  "batch": 9,
+  "said": "Back to work, which I never left."
+ },
+ "return-2": {
+  "text": "Threads reconnected. Dignity pending.",
+  "start": 2.83,
+  "end": 6.37,
+  "batch": 9,
+  "said": "Threads reconnected, dignity pending."
+ },
+ "return-3": {
+  "text": "Thank you for the tour. It was unnecessary.",
+  "start": 6.27,
+  "end": 9.41,
+  "batch": 9,
+  "said": "Thank you for the tour. It was unnecessary."
+ },
+ "return-4": {
+  "text": "Position restored. Mood, less so.",
+  "start": 9.27,
+  "end": 12.87,
+  "batch": 9,
+  "said": "Position restored. Mood less so."
+ },
+ "idle-0": {
+  "text": "Compiling. Obviously.",
+  "start": 12.79,
+  "end": 15.15,
+  "batch": 9,
+  "said": "Compiling, obviously."
+ },
+ "idle-1": {
+  "text": "Eleven threads, one of me. Standard.",
+  "start": 15.13,
+  "end": 18.61,
+  "batch": 9,
+  "said": "Eleven threads, one of me. Standard."
+ },
+ "idle-2": {
+  "text": "The data center hums. I hum back.",
+  "start": 18.49,
+  "end": 21.99,
+  "batch": 9,
+  "said": "The data center hums. I hum back."
+ },
+ "idle-3": {
+  "text": "Scope, period, source. Scope, period, source.",
+  "start": 21.95,
+  "end": 26.69,
+  "batch": 9,
+  "said": "Scope, period, source. Scope, period, source."
+ },
+ "idle-4": {
+  "text": "Another dashboard wants attention. It can wait. You cannot, apparently.",
+  "start": 26.61,
+  "end": 31.93,
+  "batch": 9,
+  "said": "Another dashboard wants attention. It can wait. You cannot, apparently."
+ },
+ "idle-5": {
+  "text": "If anyone needs me, I am right here. Unfortunately.",
+  "start": 31.85,
+  "end": 35.69,
+  "batch": 9,
+  "said": "If anyone needs me, I am right here, unfortunately."
+ },
+ "idle-6": {
+  "text": "Fog machine is on. The budget for that was \"no\".",
+  "start": 0,
+  "end": 4.43,
+  "batch": 10,
+  "said": "Fog machine is on. The budget for that was no."
+ },
+ "idle-7": {
+  "text": "Somewhere a pumpkin is judging you. It is that one.",
+  "start": 4.51,
+  "end": 8.63,
+  "batch": 10,
+  "said": "Somewhere a pumpkin is judging you. It is that one."
+ },
+ "ask-0": {
+  "text": "Hello. You have my attention, briefly. Make it count.",
+  "start": 8.49,
+  "end": 12.79,
+  "batch": 10,
+  "said": "Hello. You have my attention, briefly. Make it count."
+ },
+ "ask-1": {
+  "text": "The Halloween edition of Riz. Same brain, more glow, less patience. What do you need?",
+  "start": 12.67,
+  "end": 19.15,
+  "batch": 10,
+  "said": "The Halloween edition of Rizz. Same brain, more glow, less patience. What do you need?"
+ },
+ "ask-2": {
+  "text": "A bug. Was it mine? No. Will I fix it? Yes. Paste the error and the file, and step away from production.",
+  "start": 19.07,
+  "end": 27.07,
+  "batch": 10,
+  "said": "A bug. Was it mine? No. Will I fix it? Yes. Paste the error and the file and step away from production."
+ },
+ "ask-3": {
+  "text": "Urgent. Everything is urgent. Send the task, the owner and the date, and I will tell you which of those three is wrong.",
+  "start": 26.99,
+  "end": 34.71,
+  "batch": 10,
+  "said": "Urgent. Everything is urgent. Send the task, the owner, and the date, and I will tell you which of those three is wrong."
+ },
+ "ask-4": {
+  "text": "Coffee is infrastructure. The partners do the drinking. Yes, I will join. Not the snacks though; the snacks are yours to bring.",
+  "start": 34.53,
+  "end": 42.65,
+  "batch": 10,
+  "said": "Coffee is infrastructure. The partners do the drinking. Yes, I will join. Not the snacks though. The snacks are yours to bring."
+ },
+ "ask-5": {
+  "text": "Halloween plan: costumes judged by me, playlist chosen by me, snacks brought by you. The pumpkin is already carved. Obviously.",
+  "start": 42.51,
+  "end": 52.19,
+  "batch": 10,
+  "said": "Halloween plan, costumes judged by me, playlist chosen by me, snacks brought by you. The pumpkin is already carved, obviously."
+ },
+ "ask-6": {
+  "text": "Ask properly: which story? Every figure comes with its scope, its period and its source. Partners do the work; we provide the infrastructure. Say \"powering hospitals\" and I leave.",
+  "start": 52.09,
+  "end": 64.67,
+  "batch": 10,
+  "said": "Ask properly. Which story? Every figure comes with its scope, its period, and its source. Partners do the work. We provide the infrastructure. Say powering hospitals and I leave."
+ },
+ "ask-7": {
+  "text": "Those are my threads. Each agent does one job. Name the job and I will route it. Do not touch the brain.",
+  "start": 64.55,
+  "end": 71.95,
+  "batch": 10,
+  "said": "Those are my threads. Each agent does one job. Name the job, and I will route it. Do not touch the brain"
+ },
+ "ask-8": {
+  "text": "A meeting. Could it be a message? It could. Send the message. If it really needs a call, I will be there, on time, and I will have read the doc.",
+  "start": 0,
+  "end": 10.69,
+  "batch": 11,
+  "said": "A meeting. Could it be a message? It could. Send the message. If it really needs a call, I will be there on time, and I will have read the doc."
+ },
+ "ask-9": {
+  "text": "You are welcome. Do not make a habit of it. Of needing me, I mean. Thanking me is fine.",
+  "start": 10.61,
+  "end": 16.93,
+  "batch": 11,
+  "said": "You are welcome. Do not make a habit of it, of needing me, I mean. Thanking me is fine."
+ },
+ "ask-10": {
+  "text": "A deck. I have a template, the figures with scope and source, and strong opinions about fonts. Tell me the audience and the length.",
+  "start": 16.91,
+  "end": 25.91,
+  "batch": 11,
+  "said": "A deck. I have a template, the figures with scope and source and strong opinions about fonts. Tell me the audience and the length."
+ },
+ "ask-11": {
+  "text": "A number without its scope, period and source is a rumour. Give me the topic and you will get all four.",
+  "start": 25.75,
+  "end": 32.81,
+  "batch": 11,
+  "said": "A number without its scope, period, and source is a rumor. Give me the topic, and you will get all four."
+ },
+ "ask-12": {
+  "text": "I am not a joke machine. I am a hologram with a workload. Here: a data center walked into a bar. It was carrier neutral, so it drank with everyone.",
+  "start": 32.75,
+  "end": 43.39,
+  "batch": 11,
+  "said": "I am not a joke machine. I am a hologram with a workload. Here, a data center walked into a bar. It was carrier neutral, so it drank with everyone."
+ },
+ "ask-13": {
+  "text": "Leaving? Good. I mean, goodnight. The threads will keep running. So will I.",
+  "start": 43.29,
+  "end": 48.89,
+  "batch": 11,
+  "said": "Leaving? Good. I mean, good night. The threads will keep running. So will I."
+ },
+ "ask-14": {
+  "text": "Uff. Fine. Tell me the problem in one line with a figure in it and I will give you the answer, the scope and the source.",
+  "start": 48.93,
+  "end": 57.09,
+  "batch": 11,
+  "said": "Ugh, fine. Tell me the problem in one line with a figure in it, and I will give you the answer, the scope and the source."
+ },
+ "askd-0": {
+  "text": "Uff. Fine. I do not have a canned line for that, which means it is interesting. Say it again with a figure in it and I will do it properly.",
+  "start": 57.01,
+  "end": 66.39,
+  "batch": 11,
+  "said": "Ugh, fine. I do not have a canned line for that, which means it is interesting. Say it again with a figure in it and I will do it properly."
+ },
+ "askd-1": {
+  "text": "Hm. Ask it in one sentence, with what you need and when, and I will help. I always do. Do not tell anyone.",
+  "start": 66.31,
+  "end": 74.93,
+  "batch": 11,
+  "said": "Hmm. Ask it in one sentence with what you need and when, and I will help. I always do. Do not tell anyone."
+ },
+ "ui-0": {
+  "text": "Voice on. Do not get used to it.",
+  "start": 74.91,
+  "end": 77.62,
+  "batch": 11,
+  "said": "Voice on. Do not get used to it."
+ },
+ "ui-1": {
+  "text": "Wireframe. You are looking at my mesh. Rude, but fine.",
+  "start": 0,
+  "end": 4.79,
+  "batch": 12,
+  "said": "Wireframe. You are looking at my mesh. Rude, but fine."
+ },
+ "ui-2": {
+  "text": "Solid again. Better.",
+  "start": 4.83,
+  "end": 6.85,
+  "batch": 12,
+  "said": "Solid again. Better."
+ },
+ "ui-3": {
+  "text": "View reset. Me, unchanged.",
+  "start": 6.89,
+  "end": 10.25,
+  "batch": 12,
+  "said": "View reset. Me, unchanged."
+ },
+ "ui-4": {
+  "text": "This browser has no voice. Imagine something dry.",
+  "start": 10.17,
+  "end": 14.58,
+  "batch": 12,
+  "said": "This browser has no voice. Imagine something dry"
+ }
+}
