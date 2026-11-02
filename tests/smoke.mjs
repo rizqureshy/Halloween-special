@@ -26,8 +26,12 @@ try {
   page.on('response', (r) => r.status() >= 400 && failed.push(`${r.status()} ${r.url()}`));
   await page.goto(PAGE, { waitUntil: 'load' });
   await page.waitForFunction(() => document.querySelector('#stage').dataset.ready === 'true', null, { timeout: 30000 });
+  await wait(1500);
+  check(await page.evaluate(() => !document.querySelector('#gate').hidden && !document.querySelector('#bubble').classList.contains('show')), 'the gate is up and he is quiet until it is opened');
+  await page.screenshot({ path: `${OUT}/gate.png` });
+  await page.click('#b-unlock');
   await wait(2500);
-  check(await page.evaluate(() => document.querySelector('#bubble').classList.contains('show')), 'he boots and greets on arrival');
+  check(await page.evaluate(() => document.querySelector('#gate').hidden && document.querySelector('#bubble').classList.contains('show')), 'the unlock button opens the gate and he boots and greets');
   const boot = await page.evaluate(() => document.querySelector('#bubble-text').textContent);
   check(/Neural link|Systems online|Reboot complete/.test(boot), 'the first line is the boot sequence', boot);
   await page.screenshot({ path: `${OUT}/arrival.png` });
@@ -92,10 +96,14 @@ try {
   check(rec.count >= 150 && rec.greeting, 'his recorded ElevenLabs lines are mapped to the script', JSON.stringify(rec));
   const newRec = await page.evaluate(() => ({ laugh: window.__riz.recorded.has('Mwahahaha. Ahem. Where was I.'), danger: window.__riz.recorded.duration('Quickest fix: delete production and start a fresh universe. Mwahaha. No. Do not. Branch, test, deploy. In that order. I will watch.') }));
   check(newRec.laugh && newRec.danger > 8, 'the laugh and danger lines have recordings with durations', JSON.stringify(newRec));
+  check(await page.evaluate(() => window.__riz.voice.on && document.querySelector('#b-voice').getAttribute('aria-pressed') === 'true' && document.querySelector('#b-sound').getAttribute('aria-pressed') === 'true'), 'voice and sound start switched on');
+  check(await page.evaluate(() => window.__riz.ambience.on), 'the ambience started with the unlock');
   await page.click('#b-voice');
   await wait(400);
-  check(await page.evaluate(() => window.__riz.voice.on && !!document.querySelector('#b-talk')), 'voice toggles on and the live agent button is present');
+  check(await page.evaluate(() => !window.__riz.voice.on), 'the voice button switches the voice off');
   await page.click('#b-voice');
+  await wait(400);
+  check(await page.evaluate(() => window.__riz.voice.on && !!document.querySelector('#b-talk')), 'and on again; the live agent button is present');
 
   // a dropped-in GLB, if index.html names one, must have loaded and joined the toggles
   const glbName = await page.evaluate(() => document.querySelector('meta[name="avatar-glb"]')?.content || '');
@@ -123,6 +131,9 @@ try {
   const mp = await m.newPage();
   await mp.goto(PAGE, { waitUntil: 'load' });
   await mp.waitForFunction(() => document.querySelector('#stage')?.dataset.ready === 'true', null, { timeout: 60000 });
+  await wait(800);
+  check(!(await mp.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)), 'no sideways scroll on a phone with the gate up');
+  await mp.tap('#b-unlock');
   await wait(1500);
   check(!(await mp.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)), 'no sideways scroll on a phone');
   await mp.screenshot({ path: `${OUT}/mobile.png` });

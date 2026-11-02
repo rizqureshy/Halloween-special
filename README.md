@@ -26,11 +26,12 @@ The source page is `site/index.html`; the root `index.html` is only that forward
 
 ## Controls
 
+- **Unlock Halloween Rizwan** is the one button on the opening overlay. Browsers only allow sound after a click, so that click switches on his voice and the ambience and he boots and greets. Both stay on until you switch them off.
 - **Click** a screen, an agent, the brain, a pumpkin, a candle, the throne or him.
 - **Drag him** (press on him and move) to carry him away from his work. Release to let him float back.
 - **Orbit** by dragging empty space; scroll to zoom. **Reset view** puts the camera back.
 - **Make him laugh** does what it says. He catches himself afterwards.
-- **Voice** plays his recorded ElevenLabs lines (the browser's own voice fills in for any line without a recording). **Talk to him** loads the live ElevenLabs agent widget so he can answer in his own voice; that is the one thing that reaches outside the page, and only on that click. **Sound** adds wind and a low drone from WebAudio. **Mesh** shows him as wireframe, the GLB included. All of them start only from a click.
+- **Voice** (on by default) plays his recorded ElevenLabs lines (the browser's own voice fills in for any line without a recording). **Talk to him** loads the live ElevenLabs agent widget so he can answer in his own voice; that is the one thing that reaches outside the page, and only on that click. **Sound** (on by default) adds wind and a low drone from WebAudio. **Mesh** shows him as wireframe, the GLB included. Nothing plays before the unlock click.
 - **Ask him something** in the box at the bottom. Try "are you a terminator?", "are you evil?", "delete everything" or "boo".
 
 ## His voice

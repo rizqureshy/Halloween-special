@@ -94,5 +94,16 @@ button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
   .bubble[data-tone="laugh"] p { animation: none; }
 }
 
+.gate { position: fixed; inset: 0; z-index: 8; display: grid; place-items: center; padding: 20px; background: radial-gradient(ellipse at 50% 40%, rgba(5, 6, 15, 0.35), rgba(5, 6, 15, 0.88) 70%); backdrop-filter: blur(3px); transition: opacity 650ms ease; }
+.gate.open { opacity: 0; pointer-events: none; }
+.gate-card { max-width: 440px; text-align: center; padding: 28px 28px 22px; background: var(--panel); border: 1px solid rgba(255, 138, 42, 0.55); border-radius: 24px; box-shadow: 0 0 0 1px rgba(255, 138, 42, 0.15), 0 0 60px rgba(255, 138, 42, 0.18), 0 30px 80px rgba(0, 0, 0, 0.6); backdrop-filter: blur(14px); }
+.gate-kicker { margin: 0 0 6px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); font-weight: 600; }
+.gate-card h2 { margin: 0 0 10px; font-size: 24px; line-height: 1.15; letter-spacing: -0.02em; }
+.gate-card p { margin: 0 0 18px; color: var(--muted); font-size: 14px; line-height: 1.45; }
+.gate-card button { font-size: 16px; padding: 14px 24px; background: var(--orange); border-color: var(--orange); color: #130800; box-shadow: 0 0 30px rgba(255, 138, 42, 0.45); animation: breathe 2.4s ease-in-out infinite; }
+.gate-card button:hover { filter: brightness(1.08); }
+.gate-small { margin: 14px 0 0 !important; font-size: 11.5px !important; }
+@keyframes breathe { 0%, 100% { box-shadow: 0 0 22px rgba(255, 138, 42, 0.35); } 50% { box-shadow: 0 0 44px rgba(255, 138, 42, 0.7); } }
+@media (prefers-reduced-motion: reduce) { .gate-card button { animation: none; } .gate { transition: none; } }
 .talk-host { position: fixed; right: 20px; bottom: 90px; z-index: 6; }
 @media (max-width: 720px) { .talk-host { right: 10px; bottom: 70px; } }

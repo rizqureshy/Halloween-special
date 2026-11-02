@@ -32,14 +32,14 @@ scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 scene.environmentIntensity = 0.45;
 pmrem.dispose();
 const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 80);
-camera.position.set(0, 2.2, 6.9);
+camera.position.set(0, 2.4, 8.6);
 const controls = new OrbitControls(camera, canvas);
 controls.target.set(0, 1.95, 0);
 controls.enableDamping = true;
 controls.dampingFactor = 0.06;
 controls.enablePan = false;
 controls.minDistance = 3;
-controls.maxDistance = 14;
+controls.maxDistance = 16;
 controls.minPolarAngle = 0.9;
 controls.maxPolarAngle = 1.75;
 controls.minAzimuthAngle = -1.1;
@@ -280,13 +280,34 @@ canvas.addEventListener('pointerleave', () => { if (!dragging) { highlight(hover
 // ---- Idle chatter ------------------------------------------------------------------
 let nextIdle = 14;
 const idle = (t) => {
-  if (t > nextIdle) {
+  if (unlocked && t > nextIdle) {
     nextIdle = t + 16 + Math.random() * 14;
     if (!bubble.classList.contains('show') && !dragging) { const lingo = Math.random() < 0.45; speak(lingo ? say('lingo', LINGO) : say('idle', IDLE), { tone: lingo ? 'lingo' : 'idle' }); }
   }
 };
 
 // ---- Controls --------------------------------------------------------------------
+// ---- The gate: one click unlocks him -----------------------------------------------------
+// Browsers hold audio until a click or tap, so the page opens on an overlay with one button.
+// That click switches on his voice and the ambience, then he boots and greets. Until then he
+// floats silently behind the overlay while the model loads.
+voice.on = true;
+$('b-voice').setAttribute('aria-pressed', 'true');
+let soundArmed = true;
+$('b-sound').setAttribute('aria-pressed', 'true');
+let unlocked = false;
+const unlock = () => {
+  if (unlocked) return;
+  unlocked = true;
+  recorded.unlock();
+  if (soundArmed && !ambience.on) ambience.start();
+  $('gate').classList.add('open');
+  setTimeout(() => { $('gate').hidden = true; }, 700);
+  nextIdle = clock.elapsedTime + 18;
+  speakAll([{ text: say('boot', BOOT), tone: 'lingo', hold: 3800 }, { text: GREETING, tone: 'help', hold: 9000, mood: 'helping' }]);
+};
+$('b-unlock').addEventListener('click', unlock);
+
 $('b-voice').addEventListener('click', (e) => {
   recorded.unlock();
   voice.on = !voice.on;
@@ -315,6 +336,7 @@ $('b-talk').addEventListener('click', (e) => {
 $('b-laugh').addEventListener('click', () => laugh());
 $('b-sound').addEventListener('click', (e) => {
   if (ambience.on) ambience.stop(); else ambience.start();
+  soundArmed = ambience.on;
   e.currentTarget.setAttribute('aria-pressed', String(ambience.on));
 });
 $('b-mesh').addEventListener('click', (e) => {
@@ -324,8 +346,8 @@ $('b-mesh').addEventListener('click', (e) => {
 });
 $('b-reset').addEventListener('click', () => {
   controls.reset();
-  camera.position.set(0, 2.1, 8.2);
-  controls.target.set(0, 1.8, 0);
+  camera.position.set(0, 2.4, 8.6);
+  controls.target.set(0, 1.95, 0);
   avatar.endDrag();
   speak('View reset. Me, unchanged.', { tone: 'idle', hold: 2500 });
 });
@@ -364,7 +386,7 @@ const tick = () => {
   const age = t - flashAt;
   if (age < 0.8) { flashMesh.lookAt(camera.position); flashMesh.scale.setScalar(1 + age * 6); flashMesh.material.opacity = 0.9 * (1 - age / 0.8); } else flashMesh.material.opacity = 0;
   // bubble follows the head
-  if (avatar.modelTop) { headScreen.copy(avatar.modelTop); headScreen.y += 0.35; avatar.group.localToWorld(headScreen); }
+  if (avatar.modelTop) { headScreen.copy(avatar.modelTop); headScreen.y += 0.08; avatar.group.localToWorld(headScreen); }
   else { avatar.parts.head.getWorldPosition(headScreen); headScreen.y += 0.55; }
   headScreen.project(camera);
   const r = canvas.getBoundingClientRect();
@@ -375,8 +397,7 @@ const tick = () => {
   requestAnimationFrame(tick);
 };
 tick();
-setTimeout(() => speakAll([{ text: say('boot', BOOT), tone: 'lingo', hold: 3800 }, { text: GREETING, tone: 'help', hold: 9000, mood: 'helping' }]), 1200);
 paintCounters();
 $('stage').dataset.ready = 'true';
 
-window.__riz = { avatar, world, scene, camera, counters, react, speak, speakAll, laugh, THREE, recorded, voice };
+window.__riz = { avatar, world, scene, camera, counters, react, speak, speakAll, laugh, unlock, THREE, recorded, voice, ambience };

@@ -20,7 +20,7 @@ export const recorded = {
     const a = new Audio(`./voice/${m.id}.mp3`);
     a.volume = volume;
     current = a;
-    a.play().catch(() => { /* autoplay blocked until a click; the caller already came from one */ });
+    a.play().then(() => { recorded.played = true; recorded.blocked = false; }).catch(() => { recorded.blocked = true; });
     return true;
   },
   stop() { if (current) { current.pause(); current = null; } },
@@ -28,4 +28,7 @@ export const recorded = {
   /** Warm the audio pipeline on the first click so later plays are instant. */
   unlock() { if (unlocked) return; unlocked = true; const a = new Audio(); a.muted = true; a.play().catch(() => {}); },
   count: byText.size,
+  /** True once a recording has actually played; blocked while the browser's autoplay rule stops it. */
+  played: false,
+  blocked: false,
 };
