@@ -51,6 +51,10 @@ button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .bubble[data-tone="snob"] p { border-color: rgba(255, 138, 42, 0.6); box-shadow: 0 0 0 1px rgba(255, 138, 42, 0.15), 0 10px 40px rgba(0, 0, 0, 0.5); }
 .bubble[data-tone="help"] p { border-color: rgba(95, 208, 255, 0.6); }
 .bubble[data-tone="idle"] p { color: var(--muted); font-style: italic; }
+.bubble[data-tone="lingo"] p { color: var(--blue); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 13.5px; letter-spacing: 0.02em; border-color: rgba(95, 208, 255, 0.4); }
+.bubble[data-tone="danger"] p { border-color: rgba(255, 58, 58, 0.75); box-shadow: 0 0 0 1px rgba(255, 58, 58, 0.2), 0 0 32px rgba(255, 40, 40, 0.25), 0 10px 40px rgba(0, 0, 0, 0.5); }
+.bubble[data-tone="laugh"] p { border-color: rgba(255, 58, 58, 0.75); color: #ffd9d9; font-weight: 600; animation: cackle 180ms ease-in-out 6; }
+@keyframes cackle { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-1.5deg) translateY(-2px); } }
 
 .side { position: fixed; left: 20px; bottom: 84px; z-index: 3; width: min(320px, calc(100vw - 40px)); display: grid; gap: 10px; pointer-events: none; }
 .hint { margin: 0; font-size: 12.5px; color: var(--muted); }
@@ -60,6 +64,8 @@ button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .log li[data-tone="snob"] { border-color: var(--orange); }
 .log li[data-tone="help"] { border-color: var(--blue); color: var(--ink); }
 .log li[data-tone="you"] { border-color: var(--violet); color: var(--ink); }
+.log li[data-tone="lingo"] { border-color: var(--blue); font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11px; }
+.log li[data-tone="danger"], .log li[data-tone="laugh"] { border-color: #ff3a3a; color: var(--ink); }
 .log li:nth-child(n+5) { opacity: 0.45; }
 
 .ask { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 3; display: flex; gap: 6px; width: min(560px, calc(100vw - 40px)); }
@@ -85,6 +91,7 @@ button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .bubble { transition: none; }
+  .bubble[data-tone="laugh"] p { animation: none; }
 }
 
 .talk-host { position: fixed; right: 20px; bottom: 90px; z-index: 6; }

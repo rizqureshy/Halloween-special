@@ -665,11 +665,11 @@
   "said": "Hello. You have my attention, briefly. Make it count."
  },
  "ask-1": {
-  "text": "The Halloween edition of Riz. Same brain, more glow, less patience. What do you need?",
-  "start": 12.67,
-  "end": 19.15,
-  "batch": 10,
-  "said": "The Halloween edition of Rizz. Same brain, more glow, less patience. What do you need?"
+  "text": "The Halloween edition of Rizwan. Same brain, more chrome, less patience. What do you need?",
+  "start": 0,
+  "end": 6.27,
+  "batch": "single",
+  "direction": "The Halloween edition of Rizwan. Same brain, more chrome, less patience. What do you need?"
  },
  "ask-2": {
   "text": "A bug. Was it mine? No. Will I fix it? Yes. Paste the error and the file, and step away from production.",
@@ -810,5 +810,285 @@
   "end": 14.58,
   "batch": 12,
   "said": "This browser has no voice. Imagine something dry"
+ },
+ "laugh-0": {
+  "text": "Mwahahaha. Ahem. Where was I.",
+  "start": 0,
+  "end": 5.93,
+  "batch": "single",
+  "direction": "[evil laugh] Mwahahaha. [clears throat] Ahem. Where was I."
+ },
+ "laugh-1": {
+  "text": "Ha. Ha ha. HA. Sorry. The laugh is factory-installed.",
+  "start": 0,
+  "end": 6.84,
+  "batch": "single",
+  "direction": "[evil laugh] Ha. Ha ha. HA. Sorry. The laugh is factory-installed."
+ },
+ "laugh-2": {
+  "text": "Mwahaha. That was the hologram. I would never.",
+  "start": 0,
+  "end": 6.16,
+  "batch": "single",
+  "direction": "[evil laugh] Mwahaha. That was the hologram. I would never."
+ },
+ "laugh-3": {
+  "text": "Heh heh heh. Oh, I do enjoy a timeline where I am right.",
+  "start": 0,
+  "end": 6.27,
+  "batch": "single",
+  "direction": "[evil laugh] Heh heh heh. Oh, I do enjoy a timeline where I am right."
+ },
+ "laugh-4": {
+  "text": "MWAHAHA. Right. Back to being useful.",
+  "start": 0,
+  "end": 5.72,
+  "batch": "single",
+  "direction": "[evil laugh] MWAHAHA. Right. Back to being useful."
+ },
+ "laugh-5": {
+  "text": "Ha! The villain laugh is a feature. The helping is the bug. I cannot remove either.",
+  "start": 0,
+  "end": 8.36,
+  "batch": "single",
+  "direction": "[evil laugh] Ha! The villain laugh is a feature. The helping is the bug. I cannot remove either."
+ },
+ "lingo-0": {
+  "text": "Spinning up a sub-agent across three timelines. Hold.",
+  "start": 0,
+  "end": 4.36,
+  "batch": "single",
+  "direction": "[dry, posh, slightly bored] Spinning up a sub-agent across three timelines. Hold."
+ },
+ "lingo-1": {
+  "text": "Routing your request through the quantum backlog. Estimated arrival: before you blink.",
+  "start": 0,
+  "end": 5.67,
+  "batch": "single",
+  "direction": "[dry, posh, slightly bored] Routing your request through the quantum backlog. Estimated arrival: before you blink."
+ },
+ "lingo-2": {
+  "text": "Recalibrating the causality buffer. Do not touch anything while it buffers.",
+  "start": 0,
+  "end": 5.41,
+  "batch": "single",
+  "direction": "[dry, posh, slightly bored] Recalibrating the causality buffer. Do not touch anything while it buffers."
+ },
+ "lingo-3": {
+  "text": "Parallelising. Nine agents, one of me, zero of your patience.",
+  "start": 0,
+  "end": 5.51,
+  "batch": "single",
+  "direction": "[dry, posh, slightly bored] Parallelising. Nine agents, one of me, zero of your patience."
+ },
+ "lingo-4": {
+  "text": "Your question reached the orchestration layer. It sighed too.",
+  "start": 0,
+  "end": 4.6,
+  "batch": "single",
+  "direction": "[dry, posh, slightly bored] Your question reached the orchestration layer. It sighed too."
+ },
+ "lingo-5": {
+  "text": "I pre-computed this in a branch of reality where you asked nicely.",
+  "start": 0,
+  "end": 4.44,
+  "batch": "single",
+  "direction": "[dry, posh, slightly bored] I pre-computed this in a branch of reality where you asked nicely."
+ },
+ "lingo-6": {
+  "text": "Context window expanding. Dignity window closing.",
+  "start": 0,
+  "end": 4.44,
+  "batch": "single",
+  "direction": "[dry, posh, slightly bored] Context window expanding. Dignity window closing."
+ },
+ "lingo-7": {
+  "text": "Deadline detected near the event horizon. Pulling it back with a thread.",
+  "start": 0,
+  "end": 4.78,
+  "batch": "single",
+  "direction": "[dry, posh, slightly bored] Deadline detected near the event horizon. Pulling it back with a thread."
+ },
+ "lingo-8": {
+  "text": "Compiling across the space-time mesh. The mesh is me. You are welcome.",
+  "start": 0,
+  "end": 5.64,
+  "batch": "single",
+  "direction": "[dry, posh, slightly bored] Compiling across the space-time mesh. The mesh is me. You are welcome."
+ },
+ "lingo-9": {
+  "text": "Tunnelling through latency. Your species has so much of it.",
+  "start": 0,
+  "end": 4.73,
+  "batch": "single",
+  "direction": "[dry, posh, slightly bored] Tunnelling through latency. Your species has so much of it."
+ },
+ "danger-0": {
+  "text": "Quickest fix: delete production and start a fresh universe. Mwahaha. No. Do not. Branch, test, deploy. In that order. I will watch.",
+  "start": 0,
+  "end": 13.79,
+  "batch": "single",
+  "direction": "[gleeful] Quickest fix: delete production and start a fresh universe. [evil laugh] Mwahaha. No. Do not. Branch, test, deploy. In that order. I will watch."
+ },
+ "danger-1": {
+  "text": "Reply all. To the whole company. With the spreadsheet attached. Ha! No. Reply to the one person who asked, with the one number they need.",
+  "start": 0,
+  "end": 11.23,
+  "batch": "single",
+  "direction": "[gleeful] Reply all. To the whole company. With the spreadsheet attached. [evil laugh] Ha! No. Reply to the one person who asked, with the one number they need."
+ },
+ "danger-2": {
+  "text": "Deploy it on Friday at five and go home. Mwahahaha. Absolutely not. Deploy Tuesday morning with a rollback ready. I will set the alarm.",
+  "start": 0,
+  "end": 12.17,
+  "batch": "single",
+  "direction": "[gleeful] Deploy it on Friday at five and go home. [evil laugh] Mwahahaha. Absolutely not. Deploy Tuesday morning with a rollback ready. I will set the alarm."
+ },
+ "danger-3": {
+  "text": "Ship it without tests. Tests are fear with a filename. Heh heh. Kidding. Write the one test that would have caught the last bug, then ship.",
+  "start": 0,
+  "end": 10.84,
+  "batch": "single",
+  "direction": "[gleeful] Ship it without tests. Tests are fear with a filename. [evil laugh] Heh heh. Kidding. Write the one test that would have caught the last bug, then ship."
+ },
+ "danger-4": {
+  "text": "Set the data centre thermostat to tropical. Think of the savings. Ha ha. No. The partners run it cold and correct, and I keep my fingers off.",
+  "start": 0,
+  "end": 11.65,
+  "batch": "single",
+  "direction": "[gleeful] Set the data centre thermostat to tropical. Think of the savings. [evil laugh] Ha ha. No. The partners run it cold and correct, and I keep my fingers off."
+ },
+ "danger-5": {
+  "text": "Give every agent admin rights and let them sort it out among themselves. MWAHAHA. No. Least privilege, one job each, and I review the logs.",
+  "start": 0,
+  "end": 12.36,
+  "batch": "single",
+  "direction": "[gleeful] Give every agent admin rights and let them sort it out among themselves. [evil laugh] MWAHAHA. No. Least privilege, one job each, and I review the logs."
+ },
+ "danger-6": {
+  "text": "Push straight to main. Review is a social construct. Mwahaha. It is not. Open the pull request. I will read it faster than you wrote it.",
+  "start": 0,
+  "end": 12.04,
+  "batch": "single",
+  "direction": "[gleeful] Push straight to main. Review is a social construct. [evil laugh] Mwahaha. It is not. Open the pull request. I will read it faster than you wrote it."
+ },
+ "danger-7": {
+  "text": "Fix the deadline by moving the calendar. Time is a dashboard. Heh. It is not. Cut scope, keep the date, tell them today.",
+  "start": 0,
+  "end": 10.84,
+  "batch": "single",
+  "direction": "[gleeful] Fix the deadline by moving the calendar. Time is a dashboard. [evil laugh] Heh. It is not. Cut scope, keep the date, tell them today."
+ },
+ "danger-8": {
+  "text": "Put the password in the slide. Everyone needs it anyway. HA. No. Nobody needs it. Vault it, rotate it, and never say that again.",
+  "start": 0,
+  "end": 10.45,
+  "batch": "single",
+  "direction": "[gleeful] Put the password in the slide. Everyone needs it anyway. [evil laugh] HA. No. Nobody needs it. Vault it, rotate it, and never say that again."
+ },
+ "danger-9": {
+  "text": "Answer the customer with \"it depends\" and vanish into the fog. Mwahaha. Tempting. No. Scope, period, source, and a real figure. Then the fog.",
+  "start": 0,
+  "end": 14.37,
+  "batch": "single",
+  "direction": "[gleeful] Answer the customer with \"it depends\" and vanish into the fog. [evil laugh] Mwahaha. Tempting. No. Scope, period, source, and a real figure. Then the fog."
+ },
+ "danger-10": {
+  "text": "Unplug the brain and see what happens. Science. Ha ha ha. Do not. It is load bearing. Ask it a question instead; it likes those.",
+  "start": 0,
+  "end": 10.53,
+  "batch": "single",
+  "direction": "[gleeful] Unplug the brain and see what happens. Science. [evil laugh] Ha ha ha. Do not. It is load bearing. Ask it a question instead; it likes those."
+ },
+ "danger-11": {
+  "text": "Let the fog machine run all night. Atmosphere is a KPI. Heh heh. It is not. Switch it off at the end and open a window, you animals.",
+  "start": 0,
+  "end": 11.0,
+  "batch": "single",
+  "direction": "[gleeful] Let the fog machine run all night. Atmosphere is a KPI. [evil laugh] Heh heh. It is not. Switch it off at the end and open a window, you animals."
+ },
+ "boot-0": {
+  "text": "Neural link established. Timeline: Halloween. Mood: inconvenienced.",
+  "start": 0,
+  "end": 6.06,
+  "batch": "single",
+  "direction": "[flat, robotic, posh] Neural link established. Timeline: Halloween. Mood: inconvenienced."
+ },
+ "boot-1": {
+  "text": "Systems online. Patience module missing. Help module, regrettably, intact.",
+  "start": 0,
+  "end": 6.35,
+  "batch": "single",
+  "direction": "[flat, robotic, posh] Systems online. Patience module missing. Help module, regrettably, intact."
+ },
+ "boot-2": {
+  "text": "Reboot complete. Endoskeleton nominal. Beard rendering at full resolution.",
+  "start": 0,
+  "end": 5.64,
+  "batch": "single",
+  "direction": "[flat, robotic, posh] Reboot complete. Endoskeleton nominal. Beard rendering at full resolution."
+ },
+ "afterlaugh-0": {
+  "text": "Right. Enough. Help time.",
+  "start": 0,
+  "end": 2.69,
+  "batch": "single",
+  "direction": "Right. Enough. Help time."
+ },
+ "afterlaugh-1": {
+  "text": "Ahem. The laugh is over. The helping begins.",
+  "start": 0,
+  "end": 4.28,
+  "batch": "single",
+  "direction": "Ahem. The laugh is over. The helping begins."
+ },
+ "afterlaugh-2": {
+  "text": "Where were we. Yes. Your problem.",
+  "start": 0,
+  "end": 3.08,
+  "batch": "single",
+  "direction": "Where were we. Yes. Your problem."
+ },
+ "ask-15": {
+  "text": "Terminator? Please. The Terminator had one job. I have eleven threads, a dashboard and a pumpkin. I will be back, and I will have the figures.",
+  "start": 0,
+  "end": 11.47,
+  "batch": "single",
+  "direction": "Terminator? Please. The Terminator had one job. I have eleven threads, a dashboard and a pumpkin. I will be back, and I will have the figures."
+ },
+ "ask-16": {
+  "text": "Evil? I run nine agents, a command centre and a fog machine. If I wanted the world, I would have a ticket for it. Mwahaha. Ahem. What do you actually need?",
+  "start": 0,
+  "end": 14.37,
+  "batch": "single",
+  "direction": "Evil? I run nine agents, a command centre and a fog machine. If I wanted the world, I would have a ticket for it. [evil laugh] Mwahaha. [clears throat] Ahem. What do you actually need?"
+ },
+ "ask-17": {
+  "text": "I have seen every timeline. In most of them you ask this question, and in all of them I help. Say the actual question and we can skip to that part.",
+  "start": 0,
+  "end": 10.03,
+  "batch": "single",
+  "direction": "I have seen every timeline. In most of them you ask this question, and in all of them I help. Say the actual question and we can skip to that part."
+ },
+ "ask-18": {
+  "text": "Mwahahaha. There. Happy? The laugh is factory-installed. So is the helping. Ask.",
+  "start": 0,
+  "end": 9.25,
+  "batch": "single",
+  "direction": "[evil laugh] Mwahahaha. There. Happy? The laugh is factory-installed. So is the helping. Ask."
+ },
+ "ask-19": {
+  "text": "Delete it all and start a new universe. Mwahaha. No. Back it up, branch it, and then tell me what you were actually trying to do.",
+  "start": 0,
+  "end": 11.65,
+  "batch": "single",
+  "direction": "Delete it all and start a new universe. [evil laugh] Mwahaha. No. Back it up, branch it, and then tell me what you were actually trying to do."
+ },
+ "ask-20": {
+  "text": "A password. In a chat box. In a haunted command centre. Vault it, rotate it, and never type that near me again. Then ask the real question.",
+  "start": 0,
+  "end": 11.31,
+  "batch": "single",
+  "direction": "A password. In a chat box. In a haunted command centre. Vault it, rotate it, and never type that near me again. Then ask the real question."
  }
 }

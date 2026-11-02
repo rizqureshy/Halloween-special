@@ -3,15 +3,17 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import { createAvatar } from './avatar.js';
 import { createWorld } from './world.js';
-import { say, SIGHS, TOUCH, HELP, DRAG, RETURN, IDLE, GREETING, ASK, ASK_DEFAULT } from './quips.js';
+import { say, SIGHS, TOUCH, HELP, DRAG, RETURN, IDLE, GREETING, ASK, ASK_DEFAULT, LAUGHS, LINGO, DANGER, BOOT, AFTER_LAUGH } from './quips.js';
 import { voice, ambience } from './voice.js';
 import { recorded } from './lines-audio.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const $ = (id) => document.getElementById(id);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -24,14 +26,19 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.05;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
+// a little studio environment so chrome and metal have something to reflect
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.45;
+pmrem.dispose();
 const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 80);
-camera.position.set(0, 2.1, 8.2);
+camera.position.set(0, 2.2, 6.9);
 const controls = new OrbitControls(camera, canvas);
-controls.target.set(0, 1.8, 0);
+controls.target.set(0, 1.95, 0);
 controls.enableDamping = true;
 controls.dampingFactor = 0.06;
 controls.enablePan = false;
-controls.minDistance = 3.5;
+controls.minDistance = 3;
 controls.maxDistance = 14;
 controls.minPolarAngle = 0.9;
 controls.maxPolarAngle = 1.75;
@@ -52,21 +59,30 @@ avatar.group.scale.setScalar(1.2);
 scene.add(avatar.group);
 
 // A real model of him, if one has been dropped in (see README): the meta tag
-// names the file in public/, the procedural body steps aside, the throne,
-// threads and moods stay.
+// names the file in public/, the procedural body steps aside, the threads and
+// moods stay. If the model already includes his chair, a second meta tag hides
+// the procedural throne too.
 const glb = document.querySelector('meta[name="avatar-glb"]')?.content?.trim();
+const glbHasThrone = document.querySelector('meta[name="avatar-glb-throne"]')?.content?.trim() === 'included';
 if (glb) {
-  new GLTFLoader().load(`./${glb}`, (gltf) => {
+  const loader = new GLTFLoader();
+  loader.setMeshoptDecoder(MeshoptDecoder); // scripts/pack-avatar.mjs compresses with meshopt
+  loader.load(`./${glb}`, (gltf) => {
     const model = gltf.scene;
     const box = new THREE.Box3().setFromObject(model);
     const size = box.getSize(new THREE.Vector3());
-    const s = 2.1 / Math.max(size.y, 0.01);
+    const targetHeight = glbHasThrone ? 3.1 : 2.3;
+    const s = targetHeight / Math.max(size.y, 0.01);
     model.scale.setScalar(s);
     box.setFromObject(model);
-    model.position.set(-box.getCenter(new THREE.Vector3()).x, 0.92 - box.min.y, 0.15 - box.getCenter(new THREE.Vector3()).z);
+    const c = box.getCenter(new THREE.Vector3());
+    model.position.set(-c.x, (glbHasThrone ? 0.3 : 0.92) - box.min.y, (glbHasThrone ? 0.1 : 0.15) - c.z);
     avatar.parts.body.visible = false;
+    if (glbHasThrone) avatar.parts.throne.visible = false;
+    avatar.registerModel(model);
     avatar.group.add(model);
     avatar.model = model;
+    interactive.push(...avatar.interactive.filter((o) => !interactive.includes(o)));
   }, undefined, () => speak('The model did not load. You get the hologram. Lucky you.', { tone: 'snob' }));
 }
 const interactive = [...world.interactive, ...avatar.interactive];
@@ -84,18 +100,34 @@ resize();
 // ---- Speech ------------------------------------------------------------------------
 const bubble = $('bubble');
 const bubbleText = $('bubble-text');
-const counters = { pokes: 0, sighs: 0, helps: 0 };
-const paintCounters = () => { $('c-pokes').textContent = counters.pokes; $('c-sighs').textContent = counters.sighs; $('c-helps').textContent = counters.helps; };
+const counters = { pokes: 0, sighs: 0, helps: 0, laughs: 0 };
+const paintCounters = () => { $('c-pokes').textContent = counters.pokes; $('c-sighs').textContent = counters.sighs; $('c-helps').textContent = counters.helps; $('c-laughs').textContent = counters.laughs; };
 let bubbleTimer = null;
-let helpTimer = null;
-const speak = (text, { hold = 5200, tone = 'snob' } = {}) => {
+const chain = [];
+/** How long a line holds the bubble: the recording's length when voice is on, else reading time. */
+const holdFor = (text) => {
+  const rec = voice.on ? recorded.duration(text) : 0;
+  return rec ? rec * 1000 + 350 : Math.max(2400, Math.min(9000, 1400 + text.length * 48));
+};
+const speak = (text, { hold, tone = 'snob' } = {}) => {
   bubbleText.textContent = text;
   bubble.dataset.tone = tone;
   bubble.classList.add('show');
   clearTimeout(bubbleTimer);
-  bubbleTimer = setTimeout(() => bubble.classList.remove('show'), hold);
+  bubbleTimer = setTimeout(() => bubble.classList.remove('show'), hold ?? holdFor(text));
   if (voice.on) { if (!recorded.play(text)) voice.say(text); }
   log(text, tone);
+};
+/** Say several lines one after another, each when the previous one has finished. */
+const speakAll = (lines) => {
+  chain.forEach(clearTimeout); chain.length = 0;
+  let at = 0;
+  for (const l of lines) {
+    const hold = l.hold ?? holdFor(l.text);
+    chain.push(setTimeout(() => { speak(l.text, { tone: l.tone, hold }); if (l.mood) avatar.setMood(l.mood, hold / 1000 + 0.3); l.then?.(); }, at));
+    at += hold + (l.gap ?? 250);
+  }
+  return at;
 };
 const logEl = $('log');
 const log = (text, tone) => {
@@ -106,27 +138,33 @@ const log = (text, tone) => {
   while (logEl.children.length > 8) logEl.lastChild.remove();
 };
 
-/** Snobby line now, the sigh, then the help. */
+/** Snobby line now, a sigh, sometimes a terrible idea he takes straight back, then the help. */
 const react = (kind, id, label, worldPos) => {
   counters.pokes += 1;
   avatar.lookAt(worldPos, 4);
   avatar.setMood('annoyed', 2.2);
   const key = TOUCH[id] ? id : TOUCH[kind] ? kind : 'any';
   const snob = Math.random() < 0.6 && TOUCH[key] !== TOUCH.any ? say(key, TOUCH[key]) : say('any', TOUCH.any);
-  speak(`${snob}`, { tone: 'snob', hold: 3200 });
-  clearTimeout(helpTimer);
-  helpTimer = setTimeout(() => {
-    counters.sighs += 1;
-    const sigh = say('sigh', SIGHS);
-    const helpKey = HELP[id] ? id : HELP[kind] ? kind : 'any';
-    const help = say(`help-${helpKey}`, HELP[helpKey]);
-    counters.helps += 1;
-    avatar.setMood('helping', 4);
-    speak(`${sigh} ${help.replace(/^Fine\. /, '')}`, { tone: 'help', hold: 9000 });
-    paintCounters();
-  }, 2600);
+  const helpKey = HELP[id] ? id : HELP[kind] ? kind : 'any';
+  const lines = [{ text: snob, tone: 'snob', mood: 'annoyed' }];
+  if (Math.random() < 0.4) lines.push({ text: say('lingo', LINGO), tone: 'lingo', mood: 'helping' });
+  lines.push({ text: say('sigh', SIGHS), tone: 'snob', gap: 150, then: () => { counters.sighs += 1; paintCounters(); } });
+  if (Math.random() < 0.35) {
+    lines.push({ text: say('danger', DANGER), tone: 'danger', mood: 'laughing', then: () => { counters.helps += 1; counters.laughs += 1; paintCounters(); } });
+  } else {
+    lines.push({ text: say(`help-${helpKey}`, HELP[helpKey]).replace(/^Fine\. /, ''), tone: 'help', mood: 'helping', then: () => { counters.helps += 1; paintCounters(); } });
+    if (Math.random() < 0.3) lines.push({ text: say('laugh', LAUGHS), tone: 'laugh', mood: 'laughing', then: () => { counters.laughs += 1; paintCounters(); } });
+  }
+  speakAll(lines);
   paintCounters();
   flash(worldPos);
+};
+/** The villain laugh on demand. */
+const laugh = () => {
+  counters.laughs += 1;
+  paintCounters();
+  avatar.lookAt(camera.position, 4);
+  speakAll([{ text: say('laugh', LAUGHS), tone: 'laugh', mood: 'laughing' }, { text: say('afterlaugh', AFTER_LAUGH), tone: 'help', mood: 'helping' }]);
 };
 
 // a small ring of light where you touched
@@ -200,7 +238,7 @@ canvas.addEventListener('pointermove', (e) => {
     canvas.style.cursor = 'grabbing';
     avatar.beginDrag();
     bubble.classList.remove('show');
-    clearTimeout(helpTimer);
+    chain.forEach(clearTimeout); chain.length = 0;
     speak(say('drag', DRAG), { tone: 'snob', hold: 2400 });
     lastDragLine = clock.elapsedTime;
     document.body.classList.add('dragging');
@@ -236,7 +274,7 @@ let nextIdle = 14;
 const idle = (t) => {
   if (t > nextIdle) {
     nextIdle = t + 16 + Math.random() * 14;
-    if (!bubble.classList.contains('show') && !dragging) speak(say('idle', IDLE), { tone: 'idle', hold: 3600 });
+    if (!bubble.classList.contains('show') && !dragging) { const lingo = Math.random() < 0.45; speak(lingo ? say('lingo', LINGO) : say('idle', IDLE), { tone: lingo ? 'lingo' : 'idle' }); }
   }
 };
 
@@ -266,6 +304,7 @@ $('b-talk').addEventListener('click', (e) => {
   speak('Oh, you want to talk. Fine. Press the button. I will sigh first.', { tone: 'snob', hold: 5000 });
   avatar.setMood('helping', 5);
 });
+$('b-laugh').addEventListener('click', () => laugh());
 $('b-sound').addEventListener('click', (e) => {
   if (ambience.on) ambience.stop(); else ambience.start();
   e.currentTarget.setAttribute('aria-pressed', String(ambience.on));
@@ -292,7 +331,9 @@ $('ask').addEventListener('submit', (e) => {
   counters.pokes += 1; counters.helps += 1; paintCounters();
   avatar.setMood('helping', 4);
   avatar.lookAt(camera.position, 4);
-  speak(rule ? rule[1] : say('askd', ASK_DEFAULT), { tone: 'help', hold: 8000 });
+  const answer = rule ? rule[1] : say('askd', ASK_DEFAULT);
+  if (/Mwaha|Ha!|Heh/.test(answer)) { counters.laughs += 1; paintCounters(); avatar.setMood('laughing', 3); setTimeout(() => avatar.setMood('helping', 4), 3000); }
+  speak(answer, { tone: /Mwaha/.test(answer) ? 'danger' : 'help' });
 });
 addEventListener('keydown', (e) => { if (e.key === 'Escape') { bubble.classList.remove('show'); } });
 
@@ -326,8 +367,8 @@ const tick = () => {
   requestAnimationFrame(tick);
 };
 tick();
-setTimeout(() => speak(GREETING, { tone: 'help', hold: 9000 }), 1200);
+setTimeout(() => speakAll([{ text: say('boot', BOOT), tone: 'lingo', hold: 3800 }, { text: GREETING, tone: 'help', hold: 9000, mood: 'helping' }]), 1200);
 paintCounters();
 $('stage').dataset.ready = 'true';
 
-window.__riz = { avatar, world, scene, camera, counters, react, speak, THREE, recorded, voice };
+window.__riz = { avatar, world, scene, camera, counters, react, speak, speakAll, laugh, THREE, recorded, voice };

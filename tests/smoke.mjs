@@ -1,6 +1,7 @@
 // Browser smoke test against the production build: serves dist/, blocks every
 // request that leaves the local host, pokes a panel, drags him, asks a
-// question, and takes screenshots. Usage: npm run build && npm test
+// question, laughs, and takes screenshots. Usage: npm run build && npm test
+// (PW_CHROMIUM=/path/to/chrome points it at an already installed browser.)
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { chromium } from 'playwright';
@@ -15,7 +16,7 @@ const check = (ok, name, d = '') => { console.log(`${ok ? 'PASS' : 'FAIL'}  ${na
 const server = spawn('npx', ['vite', 'preview', '--port', String(PORT), '--strictPort'], { stdio: 'ignore' });
 for (let i = 0; i < 50; i++) { try { if ((await fetch(PAGE)).ok) break; } catch { await wait(200); } }
 try {
-  const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
+  const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || undefined, args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await ctx.newPage();
   const errors = [], external = [], failed = [];
@@ -26,7 +27,9 @@ try {
   await page.goto(PAGE, { waitUntil: 'load' });
   await page.waitForFunction(() => document.querySelector('#stage').dataset.ready === 'true', null, { timeout: 30000 });
   await wait(2500);
-  check(await page.evaluate(() => document.querySelector('#bubble').classList.contains('show')), 'he greets on arrival');
+  check(await page.evaluate(() => document.querySelector('#bubble').classList.contains('show')), 'he boots and greets on arrival');
+  const boot = await page.evaluate(() => document.querySelector('#bubble-text').textContent);
+  check(/Neural link|Systems online|Reboot complete/.test(boot), 'the first line is the boot sequence', boot);
   await page.screenshot({ path: `${OUT}/arrival.png` });
   await page.evaluate(() => { const c = window.__riz.camera; c.position.set(0.9, 2.3, 3.4); c.lookAt(0, 2.0, 0); });
   await wait(300);
@@ -38,9 +41,9 @@ try {
   await page.evaluate(() => { const p = window.__riz.world.panels[0]; const v = p.group.position.clone(); window.__riz.react('panel', 'code', 'Build log', v); });
   await wait(400);
   const snob = await page.evaluate(() => document.querySelector('#bubble-text').textContent);
-  await wait(3000);
-  const help = await page.evaluate(() => document.querySelector('#bubble-text').textContent);
-  check(snob.length > 0 && help !== snob && /^(Uff|Not|Hm|Right|Of course)/.test(help), 'a poke gets a remark, then a sigh and help', `${snob} / ${help}`);
+  await wait(9000);
+  const said = await page.evaluate(() => [...document.querySelectorAll('#log li')].map((li) => li.dataset.tone).reverse());
+  check(snob.length > 0 && said.includes('snob') && (said.includes('help') || said.includes('danger')), 'a poke gets a remark, a sigh, then help or a terrible idea he retracts', `${snob} / ${said.join(',')}`);
   await page.screenshot({ path: `${OUT}/help.png` });
 
   // click the brain for real
@@ -70,14 +73,39 @@ try {
   await wait(300);
   const answer = await page.evaluate(() => document.querySelector('#bubble-text').textContent);
   check(/bug/i.test(answer), 'the question box answers in character', answer);
+  await page.fill('#ask-input', 'are you a terminator?');
+  await page.press('#ask-input', 'Enter');
+  await wait(300);
+  const term = await page.evaluate(() => document.querySelector('#bubble-text').textContent);
+  check(/Terminator had one job/.test(term), 'he has an answer for the terminator question', term);
+
+  // the villain laugh
+  await page.click('#b-laugh');
+  await wait(500);
+  const laughing = await page.evaluate(() => ({ mood: window.__riz.avatar.state.mood, text: document.querySelector('#bubble-text').textContent, n: window.__riz.counters.laughs }));
+  check(laughing.mood === 'laughing' && /Mwaha|Ha|Heh/i.test(laughing.text) && laughing.n >= 1, 'the laugh button makes him laugh like a villain', JSON.stringify(laughing));
+  await page.screenshot({ path: `${OUT}/laugh.png` });
+  await wait(7000);
 
   // recorded voice
   const rec = await page.evaluate(() => ({ count: window.__riz.recorded.count, greeting: window.__riz.recorded.has('Oh. Visitors. Touch anything and I will comment. Drag me and I will complain. Ask me and, against my better judgement, I will help.') }));
-  check(rec.count >= 110 && rec.greeting, 'his recorded ElevenLabs lines are mapped to the script', JSON.stringify(rec));
+  check(rec.count >= 150 && rec.greeting, 'his recorded ElevenLabs lines are mapped to the script', JSON.stringify(rec));
+  const newRec = await page.evaluate(() => ({ laugh: window.__riz.recorded.has('Mwahahaha. Ahem. Where was I.'), danger: window.__riz.recorded.duration('Quickest fix: delete production and start a fresh universe. Mwahaha. No. Do not. Branch, test, deploy. In that order. I will watch.') }));
+  check(newRec.laugh && newRec.danger > 8, 'the laugh and danger lines have recordings with durations', JSON.stringify(newRec));
   await page.click('#b-voice');
   await wait(400);
   check(await page.evaluate(() => window.__riz.voice.on && !!document.querySelector('#b-talk')), 'voice toggles on and the live agent button is present');
   await page.click('#b-voice');
+
+  // a dropped-in GLB, if index.html names one, must have loaded and joined the toggles
+  const glbName = await page.evaluate(() => document.querySelector('meta[name="avatar-glb"]')?.content || '');
+  if (glbName) {
+    await page.waitForFunction(() => !!window.__riz.avatar.model, null, { timeout: 60000 }).catch(() => {});
+    const m = await page.evaluate(() => { const a = window.__riz.avatar; let tris = 0; a.model?.traverse((o) => { if (o.isMesh) tris += (o.geometry.index ? o.geometry.index.count : o.geometry.attributes.position.count) / 3; }); return { loaded: !!a.model, bodyHidden: !a.parts.body.visible, tris: Math.round(tris) }; });
+    check(m.loaded && m.bodyHidden && m.tris > 1000, `the GLB ${glbName} loads and replaces the procedural body`, JSON.stringify(m));
+    await page.screenshot({ path: `${OUT}/glb.png` });
+  }
+  check(await page.evaluate(() => { const p = window.__riz.avatar.parts; return !!p.optic && !!p.throne && p.body.scale.x > 1.1; }), 'he has the red optic, the throne, and he is sized to the chair');
 
   // mesh mode
   await page.click('#b-mesh');

@@ -3,18 +3,21 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "A Halloween version of Riz: a holographic 3D figure wired into his digital command centre. Poke his interfaces and he sighs, then helps. Drag him away from work and he complains.",
+  "description": "A Halloween version of Rizwan: a half-machine holographic 3D figure on a flying throne, wired into his digital command centre. Poke his interfaces and he sighs, suggests something terrible, laughs, then helps. Drag him away from work and he complains.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "build:docs": "vite build --outDir docs --emptyOutDir && touch docs/.nojekyll",
-    "test": "node tests/smoke.mjs"
+    "test": "node tests/smoke.mjs",
+    "avatar:tripo": "node scripts/tripo-avatar.mjs",
+    "avatar:pack": "node scripts/pack-avatar.mjs"
   },
   "dependencies": {
     "three": "0.186.1"
   },
   "devDependencies": {
+    "@gltf-transform/cli": "^4.5.1",
     "playwright": "1.56.1",
     "vite": "8.3.4"
   }

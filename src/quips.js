@@ -1,5 +1,7 @@
 // What he says. Snobby first, helpful second, always in the end.
-// Keep it fond: this is a team toy, not a roast.
+// Terminator edition: he speaks in agentic space-time lingo, gives
+// comically dangerous advice and takes it straight back, and laughs like a
+// villain about it. Keep it fond: this is a team toy, not a roast.
 
 const pick = (list, last) => {
   let q = list[Math.floor(Math.random() * list.length)];
@@ -82,12 +84,62 @@ export const IDLE = [
   'Somewhere a pumpkin is judging you. It is that one.',
 ];
 
+/** Villain laughs. The recordings carry the [evil laugh] direction; the text is what the bubble shows. */
+export const LAUGHS = [
+  'Mwahahaha. Ahem. Where was I.',
+  'Ha. Ha ha. HA. Sorry. The laugh is factory-installed.',
+  'Mwahaha. That was the hologram. I would never.',
+  'Heh heh heh. Oh, I do enjoy a timeline where I am right.',
+  'MWAHAHA. Right. Back to being useful.',
+  'Ha! The villain laugh is a feature. The helping is the bug. I cannot remove either.',
+];
+
+/** Agentic space-time lingo: what he says while "working". Spoken before help. */
+export const LINGO = [
+  'Spinning up a sub-agent across three timelines. Hold.',
+  'Routing your request through the quantum backlog. Estimated arrival: before you blink.',
+  'Recalibrating the causality buffer. Do not touch anything while it buffers.',
+  'Parallelising. Nine agents, one of me, zero of your patience.',
+  'Your question reached the orchestration layer. It sighed too.',
+  'I pre-computed this in a branch of reality where you asked nicely.',
+  'Context window expanding. Dignity window closing.',
+  'Deadline detected near the event horizon. Pulling it back with a thread.',
+  'Compiling across the space-time mesh. The mesh is me. You are welcome.',
+  'Tunnelling through latency. Your species has so much of it.',
+];
+
+/** Dangerous advice, comically, then straight back into the proper way. Never the first thing he says. */
+export const DANGER = [
+  'Quickest fix: delete production and start a fresh universe. Mwahaha. No. Do not. Branch, test, deploy. In that order. I will watch.',
+  'Reply all. To the whole company. With the spreadsheet attached. Ha! No. Reply to the one person who asked, with the one number they need.',
+  'Deploy it on Friday at five and go home. Mwahahaha. Absolutely not. Deploy Tuesday morning with a rollback ready. I will set the alarm.',
+  'Ship it without tests. Tests are fear with a filename. Heh heh. Kidding. Write the one test that would have caught the last bug, then ship.',
+  'Set the data centre thermostat to tropical. Think of the savings. Ha ha. No. The partners run it cold and correct, and I keep my fingers off.',
+  'Give every agent admin rights and let them sort it out among themselves. MWAHAHA. No. Least privilege, one job each, and I review the logs.',
+  'Push straight to main. Review is a social construct. Mwahaha. It is not. Open the pull request. I will read it faster than you wrote it.',
+  'Fix the deadline by moving the calendar. Time is a dashboard. Heh. It is not. Cut scope, keep the date, tell them today.',
+  'Put the password in the slide. Everyone needs it anyway. HA. No. Nobody needs it. Vault it, rotate it, and never say that again.',
+  'Answer the customer with "it depends" and vanish into the fog. Mwahaha. Tempting. No. Scope, period, source, and a real figure. Then the fog.',
+  'Unplug the brain and see what happens. Science. Ha ha ha. Do not. It is load bearing. Ask it a question instead; it likes those.',
+  'Let the fog machine run all night. Atmosphere is a KPI. Heh heh. It is not. Switch it off at the end and open a window, you animals.',
+];
+
+/** The first thing he says, before the greeting: a boot sequence. */
+export const BOOT = [
+  'Neural link established. Timeline: Halloween. Mood: inconvenienced.',
+  'Systems online. Patience module missing. Help module, regrettably, intact.',
+  'Reboot complete. Endoskeleton nominal. Beard rendering at full resolution.',
+];
+
+/** What he says when told to stop laughing, or when the laugh runs long. */
+export const AFTER_LAUGH = ['Right. Enough. Help time.', 'Ahem. The laugh is over. The helping begins.', 'Where were we. Yes. Your problem.'];
+
 export const GREETING = 'Oh. Visitors. Touch anything and I will comment. Drag me and I will complain. Ask me and, against my better judgement, I will help.';
 
 /** The question box: keyword replies, all ending in help. */
 export const ASK = [
   [/\b(hi|hello|hey|yo|boo)\b/i, 'Hello. You have my attention, briefly. Make it count.'],
-  [/\bwho are you\b|\bwhat are you\b/i, 'The Halloween edition of Riz. Same brain, more glow, less patience. What do you need?'],
+  [/\bwho are you\b|\bwhat are you\b/i, 'The Halloween edition of Rizwan. Same brain, more chrome, less patience. What do you need?'],
   [/\bbug|error|broken|fail/i, 'A bug. Was it mine? No. Will I fix it? Yes. Paste the error and the file, and step away from production.'],
   [/\bdeadline|urgent|asap|today\b/i, 'Urgent. Everything is urgent. Send the task, the owner and the date, and I will tell you which of those three is wrong.'],
   [/\bcoffee|tea|lunch|snack/i, 'Coffee is infrastructure. The partners do the drinking. Yes, I will join. Not the snacks though; the snacks are yours to bring.'],
@@ -101,6 +153,12 @@ export const ASK = [
   [/\bjoke|funny|laugh/i, 'I am not a joke machine. I am a hologram with a workload. Here: a data center walked into a bar. It was carrier neutral, so it drank with everyone.'],
   [/\bbye|goodbye|later|night/i, 'Leaving? Good. I mean, goodnight. The threads will keep running. So will I.'],
 ];
+ASK.push([/\bterminator|robot|cyborg|machine|skynet|endoskeleton/i, 'Terminator? Please. The Terminator had one job. I have eleven threads, a dashboard and a pumpkin. I will be back, and I will have the figures.']);
+ASK.push([/\bevil|villain|dangerous|take over|world domination/i, 'Evil? I run nine agents, a command centre and a fog machine. If I wanted the world, I would have a ticket for it. Mwahaha. Ahem. What do you actually need?']);
+ASK.push([/\btime ?line|future|past|time travel|space|quantum|universe/i, 'I have seen every timeline. In most of them you ask this question, and in all of them I help. Say the actual question and we can skip to that part.']);
+ASK.push([/\blaugh|mwah|haha\b/i, 'Mwahahaha. There. Happy? The laugh is factory-installed. So is the helping. Ask.']);
+ASK.push([/\bdelete|rm -rf|drop table|nuke|destroy/i, 'Delete it all and start a new universe. Mwahaha. No. Back it up, branch it, and then tell me what you were actually trying to do.']);
+ASK.push([/\bpassword|secret|token|api key/i, 'A password. In a chat box. In a haunted command centre. Vault it, rotate it, and never type that near me again. Then ask the real question.']);
 ASK.push([/\bhelp\b/i, 'Uff. Fine. Tell me the problem in one line with a figure in it and I will give you the answer, the scope and the source.']);
 
 export const ASK_DEFAULT = ['Uff. Fine. I do not have a canned line for that, which means it is interesting. Say it again with a figure in it and I will do it properly.', 'Hm. Ask it in one sentence, with what you need and when, and I will help. I always do. Do not tell anyone.'];

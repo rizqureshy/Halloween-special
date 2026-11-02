@@ -10,6 +10,8 @@ let unlocked = false;
 
 export const recorded = {
   has: (text) => byText.has(text),
+  /** Length of a line's recording in seconds, 0 if there is none. */
+  duration: (text) => { const m = byText.get(text); return m ? Math.max(0, (m.end ?? 0) - (m.start ?? 0)) : 0; },
   /** Play the recording for a line. Resolves true if one played. */
   play(text, { volume = 1 } = {}) {
     const m = byText.get(text);
