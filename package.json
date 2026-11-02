@@ -1,0 +1,21 @@
+{
+  "name": "halloween-special",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A Halloween version of Riz: a holographic 3D figure wired into his digital command centre. Poke his interfaces and he sighs, then helps. Drag him away from work and he complains.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:docs": "vite build --outDir docs --emptyOutDir && touch docs/.nojekyll",
+    "test": "node tests/smoke.mjs"
+  },
+  "dependencies": {
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1",
+    "vite": "8.3.4"
+  }
+}

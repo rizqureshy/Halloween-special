@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Riz, Halloween edition</title>
+    <meta name="description" content="A Halloween version of Riz: a holographic figure wired into his command centre. Touch his interfaces and he comments. Drag him from his work and he complains. Ask him anything and, after a sigh, he helps." />
+    <meta name="robots" content="noindex" />
+    <!-- Drop a GLB of him into public/ and name it here (e.g. content="avatar.glb") to replace the procedural body. -->
+    <meta name="avatar-glb" content="" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='18' r='12' fill='%23e8691b'/%3E%3Cpath d='M9 14l4 4h-6zM23 14l-4 4h6zM10 22h12l-2 3-2-2-2 2-2-2-2 2z' fill='%23120600'/%3E%3C/svg%3E" />
+    <script type="module" crossorigin src="./assets/index-CGhvfdLS.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DMv4NyP9.css">
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Riz, floating in his command centre. Click a screen, a node or a pumpkin to hear what he thinks. Drag him to move him."></canvas>
+
+    <header class="top">
+      <div class="title">
+        <h1>Riz <span>Halloween edition</span></h1>
+        <p>Chief Haunting Officer. Deeply embedded. Mildly annoyed. Always helps.</p>
+      </div>
+      <div class="counters" aria-live="off">
+        <span><b id="c-pokes">0</b> pokes</span>
+        <span><b id="c-sighs">0</b> sighs</span>
+        <span><b id="c-helps">0</b> helps</span>
+      </div>
+      <div class="controls">
+        <button type="button" id="b-voice" aria-pressed="false">Voice</button>
+        <button type="button" id="b-sound" aria-pressed="false">Sound</button>
+        <button type="button" id="b-mesh" aria-pressed="false">Mesh</button>
+        <button type="button" id="b-reset">Reset view</button>
+      </div>
+    </header>
+
+    <div class="bubble" id="bubble" role="status" aria-live="polite"><p id="bubble-text"></p></div>
+
+    <aside class="side">
+      <p class="hint">Click a screen, an agent, the brain, a pumpkin. Drag <em>him</em>. Orbit with the empty space.</p>
+      <ul class="log" id="log" aria-label="What he said"></ul>
+    </aside>
+
+    <form class="ask" id="ask" autocomplete="off">
+      <label for="ask-input" class="sr">Ask him something</label>
+      <input id="ask-input" type="text" placeholder="Ask him something. He will sigh first." maxlength="140" />
+      <button type="submit">Ask</button>
+    </form>
+
+    <footer class="bottom"><p>A Halloween toy for the team. Everything here is generated in the browser; nothing is sent anywhere. He is a hologram and he knows it.</p></footer>
+
+  </body>
+</html>
