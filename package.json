@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:docs": "vite build --outDir docs --emptyOutDir && touch docs/.nojekyll",
+    "build:docs": "vite build --outDir ../docs --emptyOutDir && touch docs/.nojekyll",
     "test": "node tests/smoke.mjs",
     "avatar:tripo": "node scripts/tripo-avatar.mjs",
     "avatar:pack": "node scripts/pack-avatar.mjs"

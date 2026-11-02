@@ -20,7 +20,9 @@ If Playwright's own browser is not installed, point the test at one you have: `P
 
 ## Deploy
 
-A ready-built copy lives in `docs/`. In the repository settings, open Pages, choose "Deploy from a branch", pick `main` and the `/docs` folder. The site then lives at `https://<owner>.github.io/Halloween-special/`. Rebuild after any change with `npm run build:docs` and commit the result.
+A ready-built copy lives in `docs/`. In the repository settings, open Pages, choose "Deploy from a branch", pick the branch and the `/docs` folder. The site then lives at `https://<owner>.github.io/Halloween-special/`. If Pages is set to the root folder instead, the root `index.html` forwards to `docs/`, so the site still loads (at `.../Halloween-special/docs/`). Rebuild after any change with `npm run build:docs` and commit the result.
+
+The source page is `site/index.html`; the root `index.html` is only that forwarder.
 
 ## Controls
 
@@ -61,12 +63,13 @@ npm run avatar:pack -- path/to/model.glb      # simplify, 2K WebP textures, mesh
 npm run build:docs
 ```
 
-In `index.html`: `avatar-glb` names the file (empty content falls back to the procedural figure); `avatar-glb-throne` is `procedural` (he sits on the built throne), `seat` (the model has its own seat, the throne frames it) or `included` (the model is the whole chair); `avatar-glb-yaw` turns the model in degrees. The model is tinted faintly blue as a hologram, joins the Mesh toggle, is poked and dragged like the procedural figure, and the bubble hangs above its head. Head tracking needs a rigged model and is not wired for GLBs. The smoke test checks that the named GLB loads.
+In `site/index.html`: `avatar-glb` names the file (empty content falls back to the procedural figure); `avatar-glb-throne` is `procedural` (he sits on the built throne), `seat` (the model has its own seat, the throne frames it) or `included` (the model is the whole chair); `avatar-glb-yaw` turns the model in degrees. The model is tinted faintly blue as a hologram, joins the Mesh toggle, is poked and dragged like the procedural figure, and the bubble hangs above its head. Head tracking needs a rigged model and is not wired for GLBs. The smoke test checks that the named GLB loads.
 
 ## Where things live
 
 ```text
-index.html             the page: canvas, header, bubble, log, question box, GLB slot
+site/index.html        the page: canvas, header, bubble, log, question box, GLB slot
+index.html             forwards to docs/ for a root Pages deployment
 src/main.js            scene, environment, camera, pointer, drag, speech queue, controls, loop
 src/avatar.js          the figure and the throne, poses and moods (idle, annoyed, helping, laughing, dragged)
 src/world.js           screens, agent nodes, neural threads, brain, pumpkins, candles, fog, lights

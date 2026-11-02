@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Rizwan, Halloween edition</title>
+    <meta name="description" content="A Halloween version of Rizwan: a half-machine hologram on a flying throne, wired into his command centre. Touch his interfaces and he comments. Drag him from his work and he complains. Ask him anything and, after a sigh and possibly a terrible idea, he helps." />
+    <meta name="robots" content="noindex" />
+    <!-- The real mesh of him (Tripo H3.1 via Higgsfield, packed with scripts/pack-avatar.mjs). Empty content falls back
+         to the procedural figure. avatar-glb-throne: "procedural" (he sits on the built throne), "seat" (the model has its
+         own seat; the throne's back, wings and rings frame it) or "included" (the model is the whole chair).
+         avatar-glb-yaw turns the model, in degrees, to face the camera. -->
+    <meta name="avatar-glb" content="avatar.glb" />
+    <meta name="avatar-glb-throne" content="seat" />
+    <meta name="avatar-glb-yaw" content="-90" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='18' r='12' fill='%23e8691b'/%3E%3Cpath d='M9 14l4 4h-6zM23 14l-4 4h6zM10 22h12l-2 3-2-2-2 2-2-2-2 2z' fill='%23120600'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="../src/style.css" />
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Rizwan, on his flying throne in his command centre. Click a screen, a node or a pumpkin to hear what he thinks. Drag him to move him."></canvas>
+
+    <header class="top">
+      <div class="title">
+        <h1>Rizwan <span>Halloween edition</span></h1>
+        <p>Chief Haunting Officer. Half machine. Deeply embedded. Mildly annoyed. Always helps, eventually.</p>
+      </div>
+      <div class="counters" aria-live="off">
+        <span><b id="c-pokes">0</b> pokes</span>
+        <span><b id="c-sighs">0</b> sighs</span>
+        <span><b id="c-helps">0</b> helps</span>
+        <span><b id="c-laughs">0</b> laughs</span>
+      </div>
+      <div class="controls">
+        <button type="button" id="b-voice" aria-pressed="false">Voice</button>
+        <button type="button" id="b-talk" aria-pressed="false">Talk to him</button>
+        <button type="button" id="b-laugh">Make him laugh</button>
+        <button type="button" id="b-sound" aria-pressed="false">Sound</button>
+        <button type="button" id="b-mesh" aria-pressed="false">Mesh</button>
+        <button type="button" id="b-reset">Reset view</button>
+      </div>
+    </header>
+
+    <div class="bubble" id="bubble" role="status" aria-live="polite"><p id="bubble-text"></p></div>
+
+    <aside class="side">
+      <p class="hint">Click a screen, an agent, the brain, a pumpkin. Drag <em>him</em> off his throne. Orbit with the empty space. Do not take his first idea.</p>
+      <ul class="log" id="log" aria-label="What he said"></ul>
+    </aside>
+
+    <form class="ask" id="ask" autocomplete="off">
+      <label for="ask-input" class="sr">Ask him something</label>
+      <input id="ask-input" type="text" placeholder="Ask him something. He will sigh first. Try: are you a terminator?" maxlength="140" />
+      <button type="submit">Ask</button>
+    </form>
+
+    <div class="talk-host" id="talk-host" hidden></div>
+    <footer class="bottom"><p>A Halloween toy for the team. His voice is ElevenLabs; "Talk to him" opens a live ElevenLabs conversation (recorded for review). Nothing else leaves the page. He is a hologram and he knows it.</p></footer>
+
+    <script type="module" src="../src/main.js"></script>
+  </body>
+</html>

@@ -33,4 +33,4 @@ mkdirSync(dirname(out), { recursive: true });
 copyFileSync(`${work}/4.glb`, out);
 rmSync(work, { recursive: true, force: true });
 console.log(`out ${out} (${mb(out)} MB)`);
-console.log('Set <meta name="avatar-glb" content="avatar.glb"> in index.html (and avatar-glb-throne="included" if the chair is part of the model), then npm run build:docs.');
+console.log('Set <meta name="avatar-glb" content="avatar.glb"> in site/index.html (and avatar-glb-throne="included" if the chair is part of the model), then npm run build:docs.');
