@@ -6,12 +6,15 @@
     <title>Rizwan, Halloween edition</title>
     <meta name="description" content="A Halloween version of Rizwan: a half-machine hologram on a flying throne, wired into his command centre. Touch his interfaces and he comments. Drag him from his work and he complains. Ask him anything and, after a sigh and possibly a terrible idea, he helps." />
     <meta name="robots" content="noindex" />
-    <!-- Drop a GLB of him into public/ and name it here (e.g. content="avatar.glb") to replace the procedural body.
-         If the model already includes his chair, set avatar-glb-throne to "included" to hide the procedural throne. -->
-    <meta name="avatar-glb" content="" />
-    <meta name="avatar-glb-throne" content="" />
+    <!-- The real mesh of him (Tripo H3.1 via Higgsfield, packed with scripts/pack-avatar.mjs). Empty content falls back
+         to the procedural figure. avatar-glb-throne: "procedural" (he sits on the built throne), "seat" (the model has its
+         own seat; the throne's back, wings and rings frame it) or "included" (the model is the whole chair).
+         avatar-glb-yaw turns the model, in degrees, to face the camera. -->
+    <meta name="avatar-glb" content="avatar.glb" />
+    <meta name="avatar-glb-throne" content="seat" />
+    <meta name="avatar-glb-yaw" content="-90" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='18' r='12' fill='%23e8691b'/%3E%3Cpath d='M9 14l4 4h-6zM23 14l-4 4h6zM10 22h12l-2 3-2-2-2 2-2-2-2 2z' fill='%23120600'/%3E%3C/svg%3E" />
-    <script type="module" crossorigin src="./assets/index-C8_BHXt5.js"></script>
+    <script type="module" crossorigin src="./assets/index-Di3pxljQ.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-Bg71My37.css">
   </head>
   <body>

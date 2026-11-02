@@ -63,25 +63,33 @@ scene.add(avatar.group);
 // moods stay. If the model already includes his chair, a second meta tag hides
 // the procedural throne too.
 const glb = document.querySelector('meta[name="avatar-glb"]')?.content?.trim();
-const glbHasThrone = document.querySelector('meta[name="avatar-glb-throne"]')?.content?.trim() === 'included';
+const glbThrone = document.querySelector('meta[name="avatar-glb-throne"]')?.content?.trim() || 'procedural';
+const glbYaw = Number(document.querySelector('meta[name="avatar-glb-yaw"]')?.content || 0) * Math.PI / 180;
 if (glb) {
   const loader = new GLTFLoader();
   loader.setMeshoptDecoder(MeshoptDecoder); // scripts/pack-avatar.mjs compresses with meshopt
   loader.load(`./${glb}`, (gltf) => {
     const model = gltf.scene;
+    model.rotation.y = glbYaw; // image-to-3D models often face sideways; the meta tag turns him to the camera
     const box = new THREE.Box3().setFromObject(model);
     const size = box.getSize(new THREE.Vector3());
-    const targetHeight = glbHasThrone ? 3.1 : 2.3;
+    // body only: the procedural throne stays and he sits on it; seat: the model brings its own seat
+    // and the throne's back, wings and rings frame it; included: the model is the whole chair.
+    const targetHeight = glbThrone === 'procedural' ? 2.3 : glbThrone === 'seat' ? 2.75 : 3.1;
     const s = targetHeight / Math.max(size.y, 0.01);
     model.scale.setScalar(s);
     box.setFromObject(model);
     const c = box.getCenter(new THREE.Vector3());
-    model.position.set(-c.x, (glbHasThrone ? 0.3 : 0.92) - box.min.y, (glbHasThrone ? 0.1 : 0.15) - c.z);
+    const floor = glbThrone === 'procedural' ? 0.92 : glbThrone === 'seat' ? 0.56 : 0.3;
+    model.position.set(-c.x, floor - box.min.y, (glbThrone === 'procedural' ? 0.15 : 0.1) - c.z);
     avatar.parts.body.visible = false;
-    if (glbHasThrone) avatar.parts.throne.visible = false;
+    avatar.setThroneMode(glbThrone);
     avatar.registerModel(model);
     avatar.group.add(model);
     avatar.model = model;
+    // the bubble hangs above the model's head
+    box.setFromObject(model);
+    avatar.modelTop = new THREE.Vector3(0, box.max.y - avatar.group.position.y, box.getCenter(new THREE.Vector3()).z - avatar.group.position.z);
     interactive.push(...avatar.interactive.filter((o) => !interactive.includes(o)));
   }, undefined, () => speak('The model did not load. You get the hologram. Lucky you.', { tone: 'snob' }));
 }
@@ -356,8 +364,8 @@ const tick = () => {
   const age = t - flashAt;
   if (age < 0.8) { flashMesh.lookAt(camera.position); flashMesh.scale.setScalar(1 + age * 6); flashMesh.material.opacity = 0.9 * (1 - age / 0.8); } else flashMesh.material.opacity = 0;
   // bubble follows the head
-  avatar.parts.head.getWorldPosition(headScreen);
-  headScreen.y += 0.55;
+  if (avatar.modelTop) { headScreen.copy(avatar.modelTop); headScreen.y += 0.35; avatar.group.localToWorld(headScreen); }
+  else { avatar.parts.head.getWorldPosition(headScreen); headScreen.y += 0.55; }
   headScreen.project(camera);
   const r = canvas.getBoundingClientRect();
   bubble.style.left = `${r.left + ((headScreen.x + 1) / 2) * r.width}px`;

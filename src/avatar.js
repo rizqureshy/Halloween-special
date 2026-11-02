@@ -269,6 +269,16 @@ export function createAvatar() {
     meshed = on;
     originals.forEach((mat, o) => { o.material = on ? (o.userData.wire || wireFor(mat)) : mat; });
   };
+  /** How the procedural throne behaves around a loaded model: procedural (he sits on it), seat (the model
+   *  has its own seat; the back, wings and rings stay as a wider frame) or included (the model is the chair). */
+  const setThroneMode = (mode) => {
+    if (mode === 'included') { throne.visible = false; return; }
+    throne.visible = true;
+    if (mode !== 'seat') return;
+    for (const m of throne.children) if (['seat', 'pedestal', 'arm', 'sup'].includes(m.name)) m.visible = false;
+    throne.scale.set(1.5, 1.18, 1);
+    throne.position.z = -0.42;
+  };
   /** A loaded GLB joins the wireframe toggle and the hologram tint. */
   const registerModel = (model) => {
     model.traverse((o) => {
@@ -390,5 +400,5 @@ export function createAvatar() {
   /** Where the neural threads start, in world space. */
   const portWorld = (out) => parts.port.getWorldPosition(out);
 
-  return { group, parts, interactive, home, state, update, lookAt, setMood, beginDrag, endDrag, moveTo, setMeshed, isMeshed: () => meshed, registerModel, portWorld, BODY_SCALE };
+  return { group, parts, interactive, home, state, update, lookAt, setMood, beginDrag, endDrag, moveTo, setMeshed, isMeshed: () => meshed, registerModel, setThroneMode, portWorld, BODY_SCALE };
 }

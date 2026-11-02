@@ -3,7 +3,7 @@
 // image-to-model API (H series, v3.1). Needs TRIPO_API_KEY from
 // https://platform.tripo3d.ai. Usage:
 //   TRIPO_API_KEY=tsk_... node scripts/tripo-avatar.mjs [image] [out.glb]
-// Defaults: image = assets/reference.webp, out = public/avatar.glb. The raw
+// Defaults: image = assets/reference-figure.png, out = public/avatar.glb. The raw
 // download is kept at assets/avatar-raw.glb (ignored by git) and packed for
 // the web with scripts/pack-avatar.mjs.
 // Costs Tripo credits (texture_quality "detailed" and pbr cost more than
@@ -14,7 +14,7 @@ import { execFileSync } from 'node:child_process';
 
 const API = 'https://openapi.tripo3d.ai/v3';
 const key = process.env.TRIPO_API_KEY;
-const image = process.argv[2] || 'assets/reference.webp';
+const image = process.argv[2] || 'assets/reference-figure.png';
 const out = process.argv[3] || 'public/avatar.glb';
 if (!key) { console.error('Set TRIPO_API_KEY (https://platform.tripo3d.ai, API keys).'); process.exit(2); }
 

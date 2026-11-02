@@ -2,7 +2,7 @@
 
 A Halloween toy for the team: a holographic, half-machine 3D version of Rizwan on a flying villain's throne, wired by neural threads into his digital command centre and doing a trillion things at once. Click any screen, agent node, the brain, a pumpkin or a candle and he comments, snobbily, mutters some space-time agent lingo, sighs, and then helps. About a third of the time his first idea is a terrible one ("delete production and start a fresh universe"), which he laughs about like a villain and takes straight back before giving the proper answer. Drag him off his throne and he complains all the way, then floats back. Ask him anything in the box and, after a sigh, he answers in character.
 
-The scene is built in the browser with Three.js: the figure (glasses, beard, a chrome endoskeleton plate with a red optic, an exposed mechanical forearm, the neural headset), the winged throne sized to him, the screens, the agent nodes on their neural threads, the pumpkins, the fog, the bloom and the ambience. His voice is ElevenLabs: 156 recorded lines (voice "Timothy Pemberton Smythe", model eleven_v4) ship with the site, and "Talk to him" opens a live ElevenLabs conversational agent with the same voice and persona. Nothing else leaves the page.
+The scene is built in the browser with Three.js. He is a real mesh: Tripo H3.1 image-to-3D, run through Higgsfield on the Halloween portrait, 2 million faces packed down to a 3.3 MB GLB (see "The mesh" below). The winged throne, the screens, the agent nodes on their neural threads, the pumpkins, the fog, the bloom and the ambience are built in code, and a procedural figure (glasses, beard, chrome endoskeleton plate, red optic, mechanical forearm) stands in if the model is removed. His voice is ElevenLabs: 156 recorded lines (voice "Timothy Pemberton Smythe", model eleven_v4) ship with the site, and "Talk to him" opens a live ElevenLabs conversational agent with the same voice and persona. Nothing else leaves the page.
 
 ## Run
 
@@ -38,27 +38,30 @@ A ready-built copy lives in `docs/`. In the repository settings, open Pages, cho
 - Chained lines (snob, lingo, sigh, danger or help, laugh) wait for each other: with Voice on, each holds for its recording's length.
 - The live agent is "Rizwan, Halloween edition" (`agent_5201m6eq1ew0erk908bj3v1nyd89`): Claude Sonnet 5.5 at temperature 0.6, the same voice, a daily cap of 60 conversations and 4 at once, allowed from rizqureshy.github.io and localhost, low trust context. Its prompt carries the same character: one line of complaint, space-time lingo, an absurd shortcut retracted in the same breath, a short villain laugh, then real and specific help; never genuinely harmful instructions. Conversations are recorded in the ElevenLabs workspace. Edit the persona in the ElevenLabs agent prompt; the page only carries the id.
 
-## A real mesh of him
+## The mesh
 
-The figure in the page is procedural (see `src/avatar.js`). The page is ready for a real, fully meshed model of him generated from `assets/reference.webp` (the Halloween portrait) with an image-to-3D model. Three ways to get one:
+`public/avatar.glb` is him. It was generated on 2 November 2026 with Tripo H3.1 image-to-3D through the Higgsfield connector (job `507c33da-0c21-447b-bb78-5152bce1890a`, 18 credits: detailed geometry and textures, PBR, orientation aligned to the image) from `assets/reference-figure.png`, which is the Halloween portrait `assets/reference.webp` cropped to the figure and his chair. The raw result is 68.6 MB and 1.98 million faces with base colour, normal and metallic-roughness textures; `scripts/pack-avatar.mjs` simplified it to about 300,000 faces, resized the textures to 2K WebP and meshopt-compressed it to 3.3 MB. Tripo kept his block seat but not the throne back, so the page keeps its own throne back, wings, spikes and rings behind him as a frame (`avatar-glb-throne="seat"`), and turns the model to face the camera (`avatar-glb-yaw="-90"`).
 
-1. **Higgsfield** (the account has Tripo H3.1 image-to-3D and multiview-to-3D). In the Higgsfield app, run Tripo H3.1 image-to-3D on `assets/reference.webp` (add a plain photo as a second view for multiview if you want the face closer). Download the GLB. Note: the Higgsfield connector available to Claude in this repository's cloud sessions is read-only (catalogue, balance and history), so the job has to be started in the app; a finished job can then be pulled from the history by its URL.
+To regenerate or swap him:
+
+1. **Higgsfield.** Run Tripo H3.1 image-to-3D on `assets/reference-figure.png` (or a plain photo as a second view with multiview-to-3D for a closer face). The generation connector can do it from a Claude session; the read-only connector can only list the result afterwards. Download the GLB.
 2. **Tripo3D directly.** With an API key from https://platform.tripo3d.ai:
 
    ```bash
    TRIPO_API_KEY=tsk_... npm run avatar:tripo
    ```
 
-   This uploads the reference, runs image-to-model (v3.1, detailed geometry and textures, PBR), keeps the raw download at `assets/avatar-raw.glb` and packs it into `public/avatar.glb`.
-3. **Any other GLB** (Meshy, Hunyuan, a scan, TripoSR run locally).
+   This uploads the figure crop, runs image-to-model (v3.1, detailed, PBR), keeps the raw download at `assets/avatar-raw.glb` (ignored by git) and packs it into `public/avatar.glb`.
+3. **Any other GLB** (Meshy, Hunyuan, a scan).
 
-Then pack it, name it, and rebuild:
+Then pack it and rebuild:
 
 ```bash
-npm run avatar:pack -- path/to/model.glb      # simplify, 2K WebP textures, meshopt → public/avatar.glb (about 4 MB from 65 MB)
+npm run avatar:pack -- path/to/model.glb      # simplify, 2K WebP textures, meshopt → public/avatar.glb
+npm run build:docs
 ```
 
-In `index.html`, set `<meta name="avatar-glb" content="avatar.glb" />`. If the model includes his chair, also set `<meta name="avatar-glb-throne" content="included" />` so the procedural throne hides. The model is scaled to about 2.3 units tall (3.1 with the chair), seated where the procedural body was, tinted faintly blue as a hologram, and joins the Mesh toggle. The moods still move the throne, the threads and the bubble; head tracking needs a rigged model and is not wired for GLBs. The smoke test checks that a named GLB loads.
+In `index.html`: `avatar-glb` names the file (empty content falls back to the procedural figure); `avatar-glb-throne` is `procedural` (he sits on the built throne), `seat` (the model has its own seat, the throne frames it) or `included` (the model is the whole chair); `avatar-glb-yaw` turns the model in degrees. The model is tinted faintly blue as a hologram, joins the Mesh toggle, is poked and dragged like the procedural figure, and the bubble hangs above its head. Head tracking needs a rigged model and is not wired for GLBs. The smoke test checks that the named GLB loads.
 
 ## Where things live
 
@@ -73,7 +76,9 @@ src/voice.js           the browser voice and the WebAudio ambience
 src/lines-audio.js     the recorded lines and their durations
 scripts/tripo-avatar.mjs   reference image → Tripo3D → packed public/avatar.glb
 scripts/pack-avatar.mjs    any GLB → web-sized public/avatar.glb
-assets/reference.webp  the Halloween portrait the model is generated from
+assets/reference.webp  the Halloween portrait
+assets/reference-figure.png  the portrait cropped to him and his chair: the image the mesh was generated from
+public/avatar.glb      the mesh of him (Tripo H3.1, packed)
 tests/smoke.mjs        the browser check
 ```
 
