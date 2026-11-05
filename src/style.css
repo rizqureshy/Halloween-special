@@ -105,5 +105,4 @@ button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .gate-small { margin: 14px 0 0 !important; font-size: 11.5px !important; }
 @keyframes breathe { 0%, 100% { box-shadow: 0 0 22px rgba(255, 138, 42, 0.35); } 50% { box-shadow: 0 0 44px rgba(255, 138, 42, 0.7); } }
 @media (prefers-reduced-motion: reduce) { .gate-card button { animation: none; } .gate { transition: none; } }
-.talk-host { position: fixed; right: 20px; bottom: 90px; z-index: 6; }
-@media (max-width: 720px) { .talk-host { right: 10px; bottom: 70px; } }
+

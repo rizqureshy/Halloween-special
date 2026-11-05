@@ -103,7 +103,7 @@ try {
   check(await page.evaluate(() => !window.__riz.voice.on), 'the voice button switches the voice off');
   await page.click('#b-voice');
   await wait(400);
-  check(await page.evaluate(() => window.__riz.voice.on && !!document.querySelector('#b-talk')), 'and on again; the live agent button is present');
+  check(await page.evaluate(() => window.__riz.voice.on && !document.querySelector('#b-talk')), 'and on again; there is no live agent button');
 
   // a dropped-in GLB, if index.html names one, must have loaded and joined the toggles
   const glbName = await page.evaluate(() => document.querySelector('meta[name="avatar-glb"]')?.content || '');

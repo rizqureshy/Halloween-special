@@ -314,25 +314,6 @@ $('b-voice').addEventListener('click', (e) => {
   e.currentTarget.setAttribute('aria-pressed', String(voice.on));
   if (voice.on) speak('Voice on. Do not get used to it.', { tone: 'snob' }); else { recorded.stop(); voice.stop(); }
 });
-// The live him: an ElevenLabs conversational agent, loaded only when asked for.
-const AGENT = 'agent_5201m6eq1ew0erk908bj3v1nyd89';
-$('b-talk').addEventListener('click', (e) => {
-  const host = $('talk-host');
-  if (host.dataset.mounted) { host.hidden = !host.hidden; e.currentTarget.setAttribute('aria-pressed', String(!host.hidden)); return; }
-  host.dataset.mounted = 'true';
-  host.hidden = false;
-  e.currentTarget.setAttribute('aria-pressed', 'true');
-  const widget = document.createElement('elevenlabs-convai');
-  widget.setAttribute('agent-id', AGENT);
-  host.appendChild(widget);
-  const script = document.createElement('script');
-  script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
-  script.async = true;
-  script.type = 'text/javascript';
-  document.body.appendChild(script);
-  speak('Oh, you want to talk. Fine. Press the button. I will sigh first.', { tone: 'snob', hold: 5000 });
-  avatar.setMood('helping', 5);
-});
 $('b-laugh').addEventListener('click', () => laugh());
 $('b-sound').addEventListener('click', (e) => {
   if (ambience.on) ambience.stop(); else ambience.start();
